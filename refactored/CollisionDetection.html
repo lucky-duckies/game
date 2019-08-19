@@ -19,11 +19,7 @@
       </div>
     </div>
     <canvas id="c" tabindex="1" width="1280" height="597"></canvas>
-    <div id="ui">
-      <div id="left"><img src="./CollisionDetection_files/left.svg" /></div>
-      <div style="flex: 0 0 40px;"></div>
-      <div id="right"><img src="./CollisionDetection_files/right.svg" /></div>
-    </div>
+
     <div id="loading" style="display: none;">
       <div>
         <div>...loading...</div>
@@ -39,13 +35,22 @@
     <script src="CollisionDetection_files/GLTFLoader.js"></script>
     <script src="CollisionDetection_files/SkeletonUtils.js"></script>
     <script src="CollisionDetection_files/dat.gui.min.js"></script>
+    <script src="globals.js"></script>
+    <script src="models.js"></script>
     <script src="input.js"></script>
     <script src="safeArray.js"></script>
     <script src="gameObject.js"></script>
     <script src="gameObjectManager.js"></script>
-    <script src="mainCollisionDetection.js"></script>
+    <script src="component.js"></script>
+    <script src="finiteStateMachine.js"></script>
+    <script src="cameraInfo.js"></script>
+    <script src="skinInstance.js"></script>
+    <script src="stateDisplayHelper.js"></script>
+    <script src="player.js"></script>
+    <script src="animal.js"></script>
+    <script src="main.js"></script>
 
-    <div class="dg ac">
+    <!-- <div class="dg ac">
       <div class="dg main a" style="width: 245px;">
         <div
           style="width: 6px; margin-left: -3px; height: 27px; cursor: ew-resize; position: absolute;"
@@ -62,6 +67,6 @@
           Close Controls
         </div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
