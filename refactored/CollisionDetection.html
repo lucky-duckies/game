@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://threejsfundamentals.org/threejs/threejs-game-conga-line.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Three.js - Game</title>
+    <link rel="stylesheet" href="styletest.css" />
+  </head>
+  <body>
+    <div id="blocker">
+      <div id="win">
+        <br /><br /><br /><br /><br /><br />
+        <span style="font-size:36px">YOU WIN</span>
+      </div>
+    </div>
+    <canvas id="c" tabindex="1" width="1280" height="597"></canvas>
+    <div id="ui">
+      <div id="left"><img src="./CollisionDetection_files/left.svg" /></div>
+      <div style="flex: 0 0 40px;"></div>
+      <div id="right"><img src="./CollisionDetection_files/right.svg" /></div>
+    </div>
+    <div id="loading" style="display: none;">
+      <div>
+        <div>...loading...</div>
+        <div class="progress">
+          <div id="progressbar" style="width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div id="labels"></div>
+
+    <script src="CollisionDetection_files/three.min.js"></script>
+    <script src="CollisionDetection_files/OrbitControls.js"></script>
+    <script src="CollisionDetection_files/GLTFLoader.js"></script>
+    <script src="CollisionDetection_files/SkeletonUtils.js"></script>
+    <script src="CollisionDetection_files/dat.gui.min.js"></script>
+    <script src="input.js"></script>
+    <script src="safeArray.js"></script>
+    <script src="gameObject.js"></script>
+    <script src="gameObjectManager.js"></script>
+    <script src="mainCollisionDetection.js"></script>
+
+    <div class="dg ac">
+      <div class="dg main a" style="width: 245px;">
+        <div
+          style="width: 6px; margin-left: -3px; height: 27px; cursor: ew-resize; position: absolute;"
+        ></div>
+        <ul style="height: auto;">
+          <li class="cr boolean">
+            <div>
+              <span class="property-name">debug</span>
+              <div class="c"><input type="checkbox" checked="checked" /></div>
+            </div>
+          </li>
+        </ul>
+        <div class="close-button close-bottom" style="width: 245px;">
+          Close Controls
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
