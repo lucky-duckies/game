@@ -25,7 +25,7 @@ function main() {
   const near = 0.1;
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 40, 80);
+  camera.position.set(0, 20, 40);
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.enableKeys = false;
@@ -160,25 +160,8 @@ function main() {
 
     {
       const gameObject = gameObjectManager.createGameObject(scene, "player");
-      gameObject.addComponent(Player);
-    }
-  }
-
-  function init() {
-    // hide the loading bar
-    const loadingElem = document.querySelector("#loading");
-    loadingElem.style.display = "none";
-
-    prepModelsAndAnimations();
-
-    {
-      const gameObject = gameObjectManager.createGameObject(camera, "camera");
-      globals.cameraInfo = gameObject.addComponent(CameraInfo);
-    }
-
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "player");
       globals.player = gameObject.addComponent(Player);
+      gameObject.transform.position.x = -15;
       globals.congaLine = [gameObject];
     }
 
@@ -186,7 +169,7 @@ function main() {
 
     const gameObject = gameObjectManager.createGameObject(scene, "zebra");
     gameObject.addComponent(Animal, models["zebra"]);
-    gameObject.transform.position.x = 50;
+    gameObject.transform.position.x = 25;
   }
 
   function resizeRendererToDisplaySize(renderer) {
