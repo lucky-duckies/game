@@ -162,8 +162,17 @@ function main() {
       const gameObject = gameObjectManager.createGameObject(scene, "player");
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -15;
+      gameObject.transform.position.y = 5;
       globals.congaLine = [gameObject];
     }
+
+    const ducks = ["duck","duck","duck"];
+    ducks.forEach((name, ndx)=> {
+      const gameObject = gameObjectManager.createGameObject(scene, name);
+      gameObject.addComponent(Duck);
+      gameObject.transform.position.x = -15 -ndx *7;
+      gameObject.transform.position.y = 0;
+    })
 
     const animalModelNames = ["zebra", "horse", "phoenix"];
 
