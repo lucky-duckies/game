@@ -72,9 +72,9 @@ function main() {
 
     for (var i = 0, l = position.count; i < l; i++) {
       color.setHSL(
-        Math.random() * 0.3 + 0.5,
-        0.75,
-        Math.random() * 0.25 + 0.75
+        Math.random() * 0.3 + 0.35, // hue (color tone)
+        0.35, // saturation
+        Math.random() * 0.25 + 0.4 // lightness (closer to 1 means lighter)
       );
       colors.push(color.r, color.g, color.b);
     }
