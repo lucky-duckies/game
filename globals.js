@@ -6,6 +6,8 @@ let globals = {
   moveSpeed: 16,
   deltaTime: 0,
   player: null,
+  zebra: null,
+  horse: null,
   congaLine: []
 };
 
