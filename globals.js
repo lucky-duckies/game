@@ -7,8 +7,7 @@ let globals = {
   deltaTime: 0,
   player: null,
   zebra: null,
-  horse: null,
-  congaLine: []
+  horse: null
 };
 
 let inputManager = null;

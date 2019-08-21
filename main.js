@@ -137,14 +137,10 @@ function main() {
     time: 0,
     moveSpeed: 16,
     deltaTime: 0,
-    player: null,
-    congaLine: []
+    player: null
   };
   const gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
-
-  // const gui = new dat.GUI();
-  // gui.add(globals, "debug").onChange(showHideDebugInfo);
 
   function init() {
     // hide the loading bar
@@ -163,7 +159,6 @@ function main() {
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -15;
       gameObject.transform.position.y = 5;
-      globals.congaLine = [gameObject];
     }
 
     {
