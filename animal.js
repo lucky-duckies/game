@@ -19,16 +19,6 @@ class Animal extends Component {
     skinInstance.mixer.timeScale = globals.moveSpeed / 4;
     const transform = gameObject.transform;
     const playerTransform = globals.player.gameObject.transform;
-    const maxTurnSpeed = Math.PI * (globals.moveSpeed / 4);
-    const targetHistory = [];
-    let targetNdx = 0;
-
-    function addHistory() {
-      const targetGO = globals.congaLine[targetNdx];
-      const newTargetPos = new THREE.Vector3();
-      newTargetPos.copy(targetGO.transform.position);
-      targetHistory.push(newTargetPos);
-    }
 
     this.fsm = new FiniteStateMachine(
       {
@@ -53,72 +43,6 @@ class Animal extends Component {
             }
           }
         },
-        waitForEnd: {
-          enter: () => {
-            skinInstance.setAnimation("Jump");
-          },
-          update: () => {
-            // get the gameObject at the end of the conga line
-            const lastGO = globals.congaLine[globals.congaLine.length - 1];
-            const deltaTurnSpeed = maxTurnSpeed * globals.deltaTime;
-            const targetPos = lastGO.transform.position;
-            aimTowardAndGetDistance(transform, targetPos, deltaTurnSpeed);
-            // check if last thing in conga line is near
-            if (
-              isClose(
-                transform,
-                hitRadius,
-                lastGO.transform,
-                globals.playerRadius
-              )
-            ) {
-              this.fsm.transition("goToLast");
-            }
-          }
-        },
-        goToLast: {
-          enter: () => {
-            // remember who we're following
-            targetNdx = globals.congaLine.length - 1;
-            // add ourselves to the conga line
-            globals.congaLine.push(gameObject);
-            skinInstance.setAnimation("Walk");
-          },
-          update: () => {
-            addHistory();
-            // walk to the oldest point in the history
-            const targetPos = targetHistory[0];
-            const maxVelocity = globals.moveSpeed * globals.deltaTime;
-            const deltaTurnSpeed = maxTurnSpeed * globals.deltaTime;
-            const distance = aimTowardAndGetDistance(
-              transform,
-              targetPos,
-              deltaTurnSpeed
-            );
-            const velocity = distance;
-            transform.translateOnAxis(
-              kForward,
-              Math.min(velocity, maxVelocity)
-            );
-            if (distance <= maxVelocity) {
-              this.fsm.transition("follow");
-            }
-          }
-        },
-        follow: {
-          update: () => {
-            addHistory();
-            // remove the oldest history and just put ourselves there.
-            const targetPos = targetHistory.shift();
-            transform.position.copy(targetPos);
-            const deltaTurnSpeed = maxTurnSpeed * globals.deltaTime;
-            aimTowardAndGetDistance(
-              transform,
-              targetHistory[0],
-              deltaTurnSpeed
-            );
-          }
-        }
       },
       "idle"
     );
