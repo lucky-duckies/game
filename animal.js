@@ -34,6 +34,7 @@ class Animal extends Component {
       {
         idle: {
           enter: () => {
+            console.log("IDLE ZEBRA");
             skinInstance.setAnimation("Idle");
           },
           update: () => {
@@ -46,6 +47,7 @@ class Animal extends Component {
                 globals.playerRadius
               )
             ) {
+              console.log("HIT ZEBRA");
               //this.fsm.transition("waitForEnd");
               // display win screen
               blocker.style.display = "block";

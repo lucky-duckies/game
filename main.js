@@ -166,20 +166,45 @@ function main() {
       globals.congaLine = [gameObject];
     }
 
-    const ducks = ["duck","duck","duck"];
-    ducks.forEach((name, ndx)=> {
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "zebra");
+      globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
+      gameObject.transform.position.x = 25;
+    }
+
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "horse");
+      globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
+      gameObject.transform.position.x = 25;
+      gameObject.transform.position.z = -105;
+    }
+
+    const ducks = ["duck", "duck", "duck"];
+    ducks.forEach((name, ndx) => {
       const gameObject = gameObjectManager.createGameObject(scene, name);
       gameObject.addComponent(Duck);
-      gameObject.transform.position.x = -15 -ndx *7;
+      gameObject.transform.position.x = -15 - ndx * 7;
       gameObject.transform.position.y = 0;
-    })
+    });
 
     const animalModelNames = ["zebra", "horse", "phoenix"];
-
-    const gameObject = gameObjectManager.createGameObject(scene, "zebra");
-    gameObject.addComponent(Animal, models["zebra"]);
-    gameObject.transform.position.x = 25;
   }
+
+  // loading obj trees
+  // {
+  //   const objLoader = new THREE.OBJLoader2();
+  //   objLoader.loadMtl(
+  //     "resources/models/windmill/tree3.mtl",
+  //     null,
+  //     materials => {
+  //       objLoader.setMaterials(materials);
+  //       objLoader.load("resources/models/windmill/tree3.obj", event => {
+  //         const root = event.detail.loaderRootNode;
+  //         scene.add(root);
+  //       });
+  //     }
+  //   );
+  // }
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
