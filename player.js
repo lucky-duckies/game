@@ -52,6 +52,8 @@ class Player extends Component {
       transform.translateOnAxis(direction, -1);
     }
 
+    globals.camera.lookAt(this.gameObject.transform.position)
+
     const { frustum } = globals.cameraInfo;
     if (frustum.containsPoint(transform.position)) {
       this.offscreenTimer = 0;
