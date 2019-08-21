@@ -6,7 +6,7 @@ class Player extends Component {
     globals.playerRadius = model.size / 8;
     this.text = gameObject.addComponent(StateDisplayHelper, model.size / 4);
     this.skinInstance = gameObject.addComponent(SkinInstance, model);
-    this.skinInstance.setAnimation("Take 001_Armature_0");
+    this.skinInstance.setAnimation('Take 001_Armature_0');
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
@@ -36,10 +36,8 @@ class Player extends Component {
       // the following code gets the direction vector that our bird is facing
       var matrix = new THREE.Matrix4();
       matrix.extractRotation(transform.matrix);
-      console.log("MATRIX", matrix);
 
-      matrix.multiplyVector3(direction);
-      console.log("DIRECTION", direction);
+      direction.applyMatrix4(matrix);
     }
 
     // move in direction of head by one unit
@@ -52,16 +50,17 @@ class Player extends Component {
       transform.translateOnAxis(direction, -1);
     }
 
-    globals.camera.lookAt(this.gameObject.transform.position)
+    //camera follows (position, at speed (between 0 and 1))
+    globals.camera.position.lerp(
+      {
+        x: this.gameObject.transform.position.x - 50,
+        y: this.gameObject.transform.position.y + 15,
+        z: this.gameObject.transform.position.z ,
+      },
+      0.5
+    );
 
-    const { frustum } = globals.cameraInfo;
-    if (frustum.containsPoint(transform.position)) {
-      this.offscreenTimer = 0;
-    } else {
-      this.offscreenTimer += deltaTime;
-      if (this.offscreenTimer >= this.maxTimeOffScreen) {
-        transform.position.set(0, 0, 0);
-      }
-    }
+    //camera is always facing player
+    globals.camera.lookAt(this.gameObject.transform.position);
   }
 }

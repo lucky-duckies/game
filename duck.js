@@ -63,10 +63,8 @@ class Duck extends Component {
         // the following code gets the direction vector that our bird is facing
         var matrix = new THREE.Matrix4();
         matrix.extractRotation(transform.matrix);
-        console.log("MATRIX", matrix);
 
-        matrix.multiplyVector3(direction);
-        console.log("DIRECTION", direction);
+        direction.applyMatrix4(matrix)
       }
 
       // move in direction of head by one unit
