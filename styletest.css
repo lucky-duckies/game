@@ -36,6 +36,35 @@ html {
   cursor: pointer;
 }
 
+#lose {
+  width: 100%;
+  height: 100%;
+
+  /* display: -webkit-box; */
+  /* display: -moz-box; */
+  display: none;
+
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+
+  color: #ff0000;
+  text-align: center;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
 #instructions {
   width: 100%;
   height: 100%;

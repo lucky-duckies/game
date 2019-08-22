@@ -14,6 +14,7 @@ var win = document.getElementById("win");
 blocker.style.display = "none";
 
 win.style.display = "none";
+lose.style.display = "none";
 let floorOn = true;
 
 function main() {
@@ -137,7 +138,8 @@ function main() {
     time: 0,
     moveSpeed: 16,
     deltaTime: 0,
-    player: null
+    player: null,
+    duckCount: 0
   };
   const gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -176,6 +178,7 @@ function main() {
 
     const ducks = ["duck", "duck", "duck"];
     ducks.forEach((name, ndx) => {
+      globals.duckCount++;
       const gameObject = gameObjectManager.createGameObject(scene, name);
       gameObject.addComponent(Duck);
       gameObject.transform.position.x = -15 - ndx * 7;
