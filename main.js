@@ -183,11 +183,10 @@ function main() {
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -105;
-    globals.obstacles.push(globals.venus)
-    console.log(globals.venus);
-    console.log(globals.obstacles);
-  }
-
+      globals.obstacles.push(globals.venus);
+      console.log(globals.venus);
+      console.log(globals.obstacles);
+    }
 
     const ducks = ["duck", "duck", "duck"];
     ducks.forEach((name, ndx) => {
@@ -248,6 +247,21 @@ function main() {
         scene.add(root);
       });
     });
+  }
+
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.loadMtl(
+      "resources/models/pond/floorOutside.mtl",
+      null,
+      materials => {
+        objLoader.setMaterials(materials);
+        objLoader.load("resources/models/pond/floorOutside.obj", event => {
+          const root = event.detail.loaderRootNode;
+          scene.add(root);
+        });
+      }
+    );
   }
 
   function resizeRendererToDisplaySize(renderer) {
