@@ -8,7 +8,10 @@ let globals = {
   player: null,
   zebra: null,
   horse: null,
-  duckCount: 0
+  duckCount: 0,
+  venus: null,
+  obstacles: [],
+  environment: []
 };
 
 let inputManager = null;
