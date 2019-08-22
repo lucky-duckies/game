@@ -139,7 +139,9 @@ function main() {
     moveSpeed: 16,
     deltaTime: 0,
     player: null,
-    duckCount: 0
+    duckCount: 0,
+    obstacles: [],
+    environment: []
   };
   const gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -175,6 +177,17 @@ function main() {
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -105;
     }
+
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "venus");
+      globals.venus = gameObject.addComponent(Venus, models["venus"]);
+      gameObject.transform.position.x = 25;
+      gameObject.transform.position.z = -105;
+    globals.obstacles.push(globals.venus)
+    console.log(globals.venus);
+    console.log(globals.obstacles);
+  }
+
 
     const ducks = ["duck", "duck", "duck"];
     ducks.forEach((name, ndx) => {
