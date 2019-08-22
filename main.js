@@ -26,11 +26,11 @@ function main() {
   const near = 0.1;
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 20, 40);
+  camera.position.set(0, 70, 40);
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.enableKeys = false;
-  controls.target.set(0, 5, 0);
+  controls.target.set(0, 10, 0);
   controls.update();
 
   const scene = new THREE.Scene();
@@ -38,14 +38,14 @@ function main() {
 
   function addLight(...pos) {
     const color = 0xffffff;
-    const intensity = 1;
+    const intensity = 0.7;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(...pos);
     scene.add(light);
     scene.add(light.target);
   }
-  addLight(5, 5, 2);
-  addLight(-5, 5, 5);
+  addLight(50, 4000, 20);
+  addLight(-50, 4000, 50);
 
   // floor
   if (floorOn) {
@@ -73,9 +73,9 @@ function main() {
 
     for (var i = 0, l = position.count; i < l; i++) {
       color.setHSL(
-        Math.random() * 0.3 + 0.5,
-        0.75,
-        Math.random() * 0.25 + 0.75
+        Math.random() * 0.3 + 0.23, // hue (color tone)
+        0.38, // saturation
+        Math.random() * 0.1 + 0.05 // lightness (closer to 1 means lighter)
       );
       colors.push(color.r, color.g, color.b);
     }
@@ -203,6 +203,39 @@ function main() {
   //     }
   //   );
   // }
+
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.loadMtl("resources/models/pond/flower.mtl", null, materials => {
+      objLoader.setMaterials(materials);
+      objLoader.load("resources/models/pond/flower.obj", event => {
+        const root = event.detail.loaderRootNode;
+        scene.add(root);
+      });
+    });
+  }
+
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.loadMtl("resources/models/pond/pond.mtl", null, materials => {
+      objLoader.setMaterials(materials);
+      objLoader.load("resources/models/pond/pond.obj", event => {
+        const root = event.detail.loaderRootNode;
+        scene.add(root);
+      });
+    });
+  }
+
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.loadMtl("resources/models/pond/floor.mtl", null, materials => {
+      objLoader.setMaterials(materials);
+      objLoader.load("resources/models/pond/floor.obj", event => {
+        const root = event.detail.loaderRootNode;
+        scene.add(root);
+      });
+    });
+  }
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

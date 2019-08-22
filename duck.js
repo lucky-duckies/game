@@ -77,7 +77,7 @@ class Duck extends Component {
         var matrix = new THREE.Matrix4();
         matrix.extractRotation(transform.matrix);
 
-        direction.applyMatrix4(matrix)
+        direction.applyMatrix4(matrix);
       }
 
       // move in direction of head by one unit
