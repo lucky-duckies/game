@@ -6,7 +6,7 @@ class Player extends Component {
     globals.playerRadius = model.size / 8;
     this.text = gameObject.addComponent(StateDisplayHelper, model.size / 4);
     this.skinInstance = gameObject.addComponent(SkinInstance, model);
-    this.skinInstance.setAnimation('Take 001_Armature_0');
+    this.skinInstance.setAnimation("Take 001_Armature_0");
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
@@ -54,8 +54,8 @@ class Player extends Component {
     globals.camera.position.lerp(
       {
         x: this.gameObject.transform.position.x - 50,
-        y: this.gameObject.transform.position.y + 15,
-        z: this.gameObject.transform.position.z ,
+        y: this.gameObject.transform.position.y + 70,
+        z: this.gameObject.transform.position.z
       },
       0.5
     );

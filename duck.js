@@ -64,7 +64,7 @@ class Duck extends Component {
         var matrix = new THREE.Matrix4();
         matrix.extractRotation(transform.matrix);
 
-        direction.applyMatrix4(matrix)
+        direction.applyMatrix4(matrix);
       }
 
       // move in direction of head by one unit
@@ -75,16 +75,6 @@ class Duck extends Component {
       // move backwards
       if (inputManager.keys.down.down) {
         transform.translateOnAxis(direction, -1);
-      }
-
-      const { frustum } = globals.cameraInfo;
-      if (frustum.containsPoint(transform.position)) {
-        this.offscreenTimer = 0;
-      } else {
-        this.offscreenTimer += deltaTime;
-        if (this.offscreenTimer >= this.maxTimeOffScreen) {
-          transform.position.set(0, 0, 0);
-        }
       }
     }
   }
