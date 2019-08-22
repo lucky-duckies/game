@@ -4,5 +4,6 @@ const models = {
   knight: { url: "resources/models/knight/KnightCharacter.gltf" },
   phoenix: { url: "resources/models/animals/scene.gltf" },
   duck: { url: "resources/models/duck/scene.gltf"},
-  venus: { url: "resources/models/venus_flytrap/scene.gltf"}
+  venus: { url: "resources/models/venus_flytrap/scene.gltf"},
+  mushroom: { url: "resources/models/mushroom/scene.gltf"}
 };

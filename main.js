@@ -187,6 +187,14 @@ function main() {
     console.log(globals.venus);
     console.log(globals.obstacles);
   }
+  {
+    const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
+    globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
+    gameObject.transform.position.x = 25;
+    gameObject.transform.position.z = -105;
+  globals.obstacles.push(globals.mushroom)
+
+}
 
 
     const ducks = ["duck", "duck", "duck"];
