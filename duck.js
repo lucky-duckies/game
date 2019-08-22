@@ -41,7 +41,7 @@ class Duck extends Component {
             }
 
             //display lose screen
-            if (globals.duckCount === 0){
+            if (globals.duckCount === 0 && win.style.display === 'none'){
               blocker.style.display = "block";
               lose.style.display = "block";
             }
