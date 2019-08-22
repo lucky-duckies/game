@@ -32,7 +32,7 @@ class Duck extends Component {
             // check if duck is near obstacle
             if (isClose(transform, hitRadius, playerTransform, 0.5)) {
               this.isCaught = true;
-
+              
               //ensures that the duckCount only decrements once
               if (this.isCaught && this.uncaught){
                 this.uncaught = false;
@@ -52,6 +52,10 @@ class Duck extends Component {
     );
   }
   update() {
+    function duckCount() {
+      document.getElementById('score').innerHTML = `Ducks left: ${globals.duckCount}`;
+    }
+    duckCount();
     this.fsm.update();
 
     if (!this.isCaught) {
