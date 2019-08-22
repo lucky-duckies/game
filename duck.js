@@ -11,7 +11,6 @@ class Duck extends Component {
     super(gameObject);
     const model = models.duck;
     globals.playerRadius = model.size / 8;
-    this.text = gameObject.addComponent(StateDisplayHelper, model.size / 4);
     this.skinInstance = gameObject.addComponent(SkinInstance, model);
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
