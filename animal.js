@@ -34,7 +34,8 @@ class Animal extends Component {
                 hitRadius,
                 playerTransform,
                 globals.playerRadius
-              )
+              ) && 
+              globals.duckCount > 0
             ) {
               //this.fsm.transition("waitForEnd");
               // display win screen
