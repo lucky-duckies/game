@@ -23,14 +23,14 @@ class Player extends Component {
     // direction vector is initialized to point in the same direction of the head of the bird
     let direction = new THREE.Vector3(1, 0, 0);
 
-    // rotate 90 degrees on right arrow key press
+    // rotate 10 degrees on right arrow key press
     if (inputManager.keys.right.down) {
       transform.rotation.y -= Math.PI / 36;
     }
 
-    // rotate 90 degrees on left arrow key press
+    // rotate 10 degrees on left arrow key press
     if (inputManager.keys.left.down) {
-      // rotates 90 degrees
+      // rotates 10 degrees
       transform.rotation.y += Math.PI / 36;
 
       // the following code gets the direction vector that our bird is facing
