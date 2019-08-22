@@ -161,14 +161,15 @@ function main() {
     {
       const gameObject = gameObjectManager.createGameObject(scene, "player");
       globals.player = gameObject.addComponent(Player);
-      gameObject.transform.position.x = -15;
+      gameObject.transform.position.x = -30;
       gameObject.transform.position.y = 5;
     }
 
     {
       const gameObject = gameObjectManager.createGameObject(scene, "zebra");
       globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
-      gameObject.transform.position.x = 25;
+      gameObject.transform.position.x = 2;
+      gameObject.transform.position.y = 5;
     }
 
     {
@@ -183,16 +184,14 @@ function main() {
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -105;
-
-    globals.obstacles.push(globals.venus)
-    console.log(globals.venus);
-    console.log(globals.obstacles);
+      globals.obstacles.push(globals.venus)
   }
   {
     const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
     globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
     gameObject.transform.position.x = 25;
-    gameObject.transform.position.z = -105;
+    gameObject.transform.position.z = -135;
+    gameObject.transform.position.y = 25;
   globals.obstacles.push(globals.mushroom)
 
 }
@@ -204,7 +203,7 @@ function main() {
       globals.duckCount++;
       const gameObject = gameObjectManager.createGameObject(scene, name);
       gameObject.addComponent(Duck);
-      gameObject.transform.position.x = -15 - ndx * 7;
+      gameObject.transform.position.x = -30 - ndx * 7;
       gameObject.transform.position.y = 0;
     });
 
