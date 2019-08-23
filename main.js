@@ -8,7 +8,6 @@ var vertex = new THREE.Vector3();
 var color = new THREE.Color();
 var listener = new THREE.AudioListener();
 
-
 var blocker = document.getElementById("blocker");
 
 var win = document.getElementById("win");
@@ -32,15 +31,15 @@ function main() {
   // adding background music to the game
   camera.add(listener);
   // create a global audio source
-  var sound = new THREE.Audio( listener );
+  var sound = new THREE.Audio(listener);
 
   var audioLoader = new THREE.AudioLoader();
-  audioLoader.load( 'resources/music/Horror Stories.ogg', function( buffer ) {
-    sound.setBuffer( buffer );
-    sound.setLoop( true );
-    sound.setVolume( 0.5 );
+  audioLoader.load("resources/music/Horror Stories.ogg", function(buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.setVolume(0.5);
     sound.play();
-});
+  });
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.enableKeys = false;
@@ -191,13 +190,14 @@ function main() {
       globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -105;
+      globals.obstacles.push(globals.horse);
     }
 
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
       gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -105;
+      gameObject.transform.position.z = -85;
       globals.obstacles.push(globals.venus);
     }
     {
@@ -205,7 +205,7 @@ function main() {
       globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -135;
-      gameObject.transform.position.y = 25;
+
       globals.obstacles.push(globals.mushroom);
     }
 
