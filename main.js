@@ -29,6 +29,7 @@ function main() {
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.set(0, 70, 40);
+  // adding background music to the game
   camera.add(listener);
   // create a global audio source
   var sound = new THREE.Audio( listener );
