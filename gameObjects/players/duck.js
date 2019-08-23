@@ -19,6 +19,7 @@ class Duck extends Component {
     this.uncaught = true;
 
     const transform = gameObject.transform;
+    const obstacles = globals.obstacles;
     const playerTransform = globals.horse.gameObject.transform;
     const hitRadius = model.size / 2;
 
@@ -29,9 +30,10 @@ class Duck extends Component {
             //skinInstance.setAnimation("Idle");
           },
           update: () => {
-            // check if duck is near obstacle
 
-            if (isClose(transform, hitRadius, playerTransform, 3)) {
+            // check if duck is near obstacle
+            for (let i = 0; i < obstacles.length; i++){
+            if (isClose(transform, hitRadius, obstacles[i].gameObject.transform, 3)) {
               this.isCaught = true;
 
               //ensures that the duckCount only decrements once
@@ -40,7 +42,7 @@ class Duck extends Component {
                 globals.duckCount--;
               }
             }
-
+          }
             //display lose screen
             if (globals.duckCount === 0 && win.style.display === "none") {
               blocker.style.display = "block";
