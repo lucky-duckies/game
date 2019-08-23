@@ -6,6 +6,8 @@
 /* global THREE, dat */
 var vertex = new THREE.Vector3();
 var color = new THREE.Color();
+var listener = new THREE.AudioListener();
+
 
 var blocker = document.getElementById("blocker");
 
@@ -27,6 +29,17 @@ function main() {
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.set(0, 70, 40);
+  camera.add(listener);
+  // create a global audio source
+  var sound = new THREE.Audio( listener );
+
+  var audioLoader = new THREE.AudioLoader();
+  audioLoader.load( 'resources/music/Horror Stories.ogg', function( buffer ) {
+    sound.setBuffer( buffer );
+    sound.setLoop( true );
+    sound.setVolume( 0.5 );
+    sound.play();
+});
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.enableKeys = false;
