@@ -184,28 +184,52 @@ function main() {
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -105;
-      globals.obstacles.push(globals.venus)
-  }
-  {
-    const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
-    globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
-    gameObject.transform.position.x = 25;
-    gameObject.transform.position.z = -135;
-    gameObject.transform.position.y = 25;
-  globals.obstacles.push(globals.mushroom)
+      globals.obstacles.push(globals.venus);
+    }
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
+      globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
+      gameObject.transform.position.x = 25;
+      gameObject.transform.position.z = -135;
+      gameObject.transform.position.y = 25;
+      globals.obstacles.push(globals.mushroom);
+    }
 
-}
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //   gameObject.addComponent(Obstacle, models["tree"]);
+    //   gameObject.transform.position.x = 0;
+    //   gameObject.transform.position.z = 0;
+    //   gameObject.transform.position.y = 0;
+    //   //globals.obstacles.push(globals.mushroom);
+    // }
 
-   
+    // eslint-disable-next-line no-lone-blocks
+    {
+      const radius = 55;
+      let numTrees = 12;
+      for (let i = 0; i < numTrees; i++) {
+        if (!(i > 5 && i < 8)) {
+          const gameObject = gameObjectManager.createGameObject(scene, "tree");
+          gameObject.addComponent(Obstacle, models["tree"]);
+          gameObject.transform.position.x =
+            Math.cos(i * (Math.PI / 6)) * radius;
+          gameObject.transform.position.z =
+            Math.sin(i * (Math.PI / 6)) * radius;
+        }
+      }
+    }
 
-    const ducks = ["duck", "duck", "duck"];
-    ducks.forEach((name, ndx) => {
-      globals.duckCount++;
-      const gameObject = gameObjectManager.createGameObject(scene, name);
-      gameObject.addComponent(Duck);
-      gameObject.transform.position.x = -30 - ndx * 7;
-      gameObject.transform.position.y = 0;
-    });
+    {
+      const ducks = ["duck", "duck", "duck"];
+      ducks.forEach((name, ndx) => {
+        globals.duckCount++;
+        const gameObject = gameObjectManager.createGameObject(scene, name);
+        gameObject.addComponent(Duck);
+        gameObject.transform.position.x = -30 - ndx * 7;
+        gameObject.transform.position.y = 0;
+      });
+    }
 
     const animalModelNames = ["zebra", "horse", "phoenix"];
   }
