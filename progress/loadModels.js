@@ -96,6 +96,9 @@ function main() {
     knight: { url: "../resources/models/knight/KnightCharacter.gltf" },
     phoenix: { url: "../resources/models/animals/scene.gltf" },
 
+
+    }
+
   };
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
