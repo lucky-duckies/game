@@ -40,8 +40,8 @@ class InputManager {
     addKey(39, "right");
     addKey(38, "up");
     addKey(40, "down");
-    addKey(90, "a");
-    addKey(88, "b");
+    addKey(65, "a");
+    addKey(83, "s");
 
     window.addEventListener("keydown", e => {
       setKeyFromKeyCode(e.keyCode, true);

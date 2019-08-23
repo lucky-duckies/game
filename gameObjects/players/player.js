@@ -31,12 +31,6 @@ class Player extends Component {
     if (inputManager.keys.left.down) {
       // rotates 10 degrees
       transform.rotation.y += Math.PI / 36;
-
-      // the following code gets the direction vector that our bird is facing
-      var matrix = new THREE.Matrix4();
-      matrix.extractRotation(transform.matrix);
-
-      direction.applyMatrix4(matrix);
     }
 
     // move in direction of head by one unit
@@ -59,7 +53,41 @@ class Player extends Component {
       0.5
     );
 
+    // the following code gets the direction vector that our bird is facing
+    var matrix = new THREE.Matrix4();
+    matrix.extractRotation(transform.matrix);
+
+    direction.applyMatrix4(matrix);
+
+    let scaleFactor = 70;
+
     //camera is always facing player
     globals.camera.lookAt(this.gameObject.transform.position);
+
+    if (inputManager.keys.a.down) {
+      globals.camera.position.lerp(
+        {
+          x:
+            this.gameObject.transform.position.x +
+            (scaleFactor * direction.x) / 2,
+          y: this.gameObject.transform.position.y - 10,
+          z:
+            this.gameObject.transform.position.z +
+            (scaleFactor * direction.z) / 2
+        },
+        0.5
+      );
+    }
+
+    if (inputManager.keys.s.down) {
+      globals.camera.position.lerp(
+        {
+          x: this.gameObject.transform.position.x,
+          y: this.gameObject.transform.position.y + 500,
+          z: this.gameObject.transform.position.z
+        },
+        0.5
+      );
+    }
   }
 }
