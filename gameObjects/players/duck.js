@@ -16,7 +16,7 @@ class Duck extends Component {
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
     this.isCaught = false;
-    this.uncaught = true;
+    this.uncaught = true
 
     const transform = gameObject.transform;
     const obstacles = globals.obstacles;

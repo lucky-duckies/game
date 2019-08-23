@@ -208,6 +208,14 @@ function main() {
 
       globals.obstacles.push(globals.mushroom);
     }
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "spider");
+      globals.spider = gameObject.addComponent(Spider, models["spider"]);
+      gameObject.transform.position.x = 25;
+      gameObject.transform.position.z = -205;
+
+      globals.obstacles.push(globals.spider);
+    }
 
     // {
     //   const gameObject = gameObjectManager.createGameObject(scene, "tree");
