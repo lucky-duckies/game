@@ -130,6 +130,16 @@ canvas {
 #loading > div > div {
   padding: 2px;
 }
+#startBtn{
+  background-color: rgb(72, 112, 76);
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  margin: 4px 2px;
+  font-size: 16px;
+  border-radius: 12px;
+}
 .progress {
   width: 50vw;
   border: 1px solid black;
