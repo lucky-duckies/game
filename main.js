@@ -219,6 +219,7 @@ function main() {
     // }
 
     // eslint-disable-next-line no-lone-blocks
+    // first circle of trees
     {
       const radius = 55;
       let numTrees = 12;
@@ -230,6 +231,37 @@ function main() {
             Math.cos(i * (Math.PI / 6)) * radius;
           gameObject.transform.position.z =
             Math.sin(i * (Math.PI / 6)) * radius;
+        }
+      }
+    }
+
+    // second circle of trees
+    {
+      const radius = 105;
+      let numTrees = 24;
+      for (let i = 0; i < numTrees; i++) {
+        if (!(i > 5 && i <8 )) {
+          const gameObject = gameObjectManager.createGameObject(scene, "tree");
+          gameObject.addComponent(Obstacle, models["tree"]);
+          gameObject.transform.position.x =
+            Math.cos(i * (Math.PI / 12)) * radius;
+          gameObject.transform.position.z =
+            Math.sin(i * (Math.PI / 12)) * radius;
+        }
+      }
+    }
+
+    {
+      const radius = 155;
+      let numTrees = 50;
+      for (let i = 0; i < numTrees; i++) {
+        if (!(i > 5 && i <8 )) {
+          const gameObject = gameObjectManager.createGameObject(scene, "tree");
+          gameObject.addComponent(Obstacle, models["tree"]);
+          gameObject.transform.position.x =
+            Math.cos(i * (Math.PI / 24)) * radius;
+          gameObject.transform.position.z =
+            Math.sin(i * (Math.PI / 24)) * radius;
         }
       }
     }
