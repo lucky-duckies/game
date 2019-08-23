@@ -30,13 +30,18 @@
     <canvas id="c" tabindex="1" width="1280" height="597"></canvas>
 
     <div id="loading" >
-      <div>
+      <div id="loadStatus">
         <div>...nearly ready...</div>
         <div class="progress">
           <div id="progressbar" style="width: 100%;"></div>
         </div>
       </div>
+      <div id="loaded" style="display: none;">
+        <div>Prepare yourself...</div>
+        <button id="startBtn">Begin!</button>
     </div>
+    </div>
+
     <div id="labels"></div>
 
     <script src="CollisionDetection_files/three.min.js"></script>

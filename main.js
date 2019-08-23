@@ -107,13 +107,29 @@ function main() {
   }
   // end floor
 
-  const manager = new THREE.LoadingManager();
-  manager.onLoad = init;
+ //displays instruction screen, initializes game when player clicks start
+ const manager = new THREE.LoadingManager();
+ manager.onLoad = function () {
+     // hide the loading bar
+     const loadingElem = document.querySelector("#loadStatus");
+     loadingElem.style.display = "none";
 
-  const progressbarElem = document.querySelector("#progressbar");
-  manager.onProgress = (url, itemsLoaded, itemsTotal) => {
-    progressbarElem.style.width = `${((itemsLoaded / itemsTotal) * 100) | 0}%`;
-  };
+    const loadedElem = document.querySelector('#loaded');
+    loadedElem.style.display = "flex";
+
+    document.getElementById('startBtn').onclick = function (){
+      const instructions = document.querySelector("#loading");
+      instructions.style.display = "none";
+      init()
+    }
+ }
+
+ // displays a loading bar
+ const progressbarElem = document.querySelector("#progressbar");
+ manager.onProgress = (url, itemsLoaded, itemsTotal) => {
+   progressbarElem.style.width = `${((itemsLoaded / itemsTotal) * 100) | 0}%`;
+ };
+
 
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
@@ -160,9 +176,9 @@ function main() {
   inputManager = new InputManager();
 
   function init() {
-    // hide the loading bar
-    const loadingElem = document.querySelector("#loading");
-    loadingElem.style.display = "none";
+    //hide the instructions screen
+    const loadedScreen = document.querySelector("#loaded");
+    loadedScreen.style.display = "none";
 
     prepModelsAndAnimations();
 
