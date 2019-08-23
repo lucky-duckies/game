@@ -17,6 +17,7 @@ class Duck extends Component {
     this.maxTimeOffScreen = 3;
     this.isCaught = false;
     this.uncaught = true;
+
     const transform = gameObject.transform;
     const playerTransform = globals.horse.gameObject.transform;
     const hitRadius = model.size / 2;
@@ -29,18 +30,19 @@ class Duck extends Component {
           },
           update: () => {
             // check if duck is near obstacle
-            if (isClose(transform, hitRadius, playerTransform, 0.5)) {
+
+            if (isClose(transform, hitRadius, playerTransform, 3)) {
               this.isCaught = true;
-              
+
               //ensures that the duckCount only decrements once
-              if (this.isCaught && this.uncaught){
+              if (this.isCaught && this.uncaught) {
                 this.uncaught = false;
                 globals.duckCount--;
               }
             }
 
             //display lose screen
-            if (globals.duckCount === 0 && win.style.display === 'none'){
+            if (globals.duckCount === 0 && win.style.display === "none") {
               blocker.style.display = "block";
               lose.style.display = "block";
             }
@@ -52,7 +54,9 @@ class Duck extends Component {
   }
   update() {
     function duckCount() {
-      document.getElementById('score').innerHTML = `Ducks left: ${globals.duckCount}`;
+      document.getElementById(
+        "score"
+      ).innerHTML = `Ducks left: ${globals.duckCount}`;
     }
     duckCount();
     this.fsm.update();
@@ -92,7 +96,6 @@ class Duck extends Component {
       if (inputManager.keys.down.down) {
         transform.translateOnAxis(direction, -1);
       }
-
     }
   }
 }
