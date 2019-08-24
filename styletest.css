@@ -112,13 +112,23 @@ canvas {
   height: 80px;
   display: block;
 }
+#instructionContent{
+  display: flex;
+  align-items: center;
+}
+#instructionContent > img{
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+  flex-shrink: 0;
+}
 #loading {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(11, 0, 49, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
