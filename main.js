@@ -107,13 +107,36 @@ function main() {
   }
   // end floor
 
-  const manager = new THREE.LoadingManager();
-  manager.onLoad = init;
+ //displays instruction screen, initializes game when player clicks start
+ const manager = new THREE.LoadingManager();
 
-  const progressbarElem = document.querySelector("#progressbar");
-  manager.onProgress = (url, itemsLoaded, itemsTotal) => {
-    progressbarElem.style.width = `${((itemsLoaded / itemsTotal) * 100) | 0}%`;
-  };
+ // displays a loading bar
+ const progressbarElem = document.querySelector("#progressbar");
+ manager.onProgress = (url, itemsLoaded, itemsTotal) => {
+   progressbarElem.style.width = `${((itemsLoaded / itemsTotal) * 100) | 0}%`;
+ };
+
+ manager.onLoad = function () {
+  // hide the loading bar
+  const loadingElem = document.querySelector("#loadStatus");
+  loadingElem.style.display = "none";
+
+  // load start button
+ const loadedElem = document.querySelector('#loaded');
+ loadedElem.style.display = "flex";
+
+ //start game before player can see
+ //this should be moved inside of the onClick if
+ //a timer is implemented, but player will see 
+ //a quick screen render
+ init()
+
+ document.getElementById('startBtn').onclick = function (){
+  //hide instructions screen
+   const instructions = document.querySelector("#loading");
+   instructions.style.display = "none";
+ }
+}
 
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
@@ -160,10 +183,6 @@ function main() {
   inputManager = new InputManager();
 
   function init() {
-    // hide the loading bar
-    const loadingElem = document.querySelector("#loading");
-    loadingElem.style.display = "none";
-
     prepModelsAndAnimations();
 
     {
