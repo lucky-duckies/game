@@ -9,6 +9,7 @@ class Player extends Component {
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
+    this.firstPersonView = false;
   }
   update() {
     const { deltaTime, moveSpeed } = globals;
@@ -54,37 +55,37 @@ class Player extends Component {
         let scaleFactor = 70;
 
 
-    // camera follows (position, at speed (between 0 and 1))
+    // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(
       {
+        //direction accounts for players rotation
         x: this.gameObject.transform.position.x - (direction.x * 40),
         y: this.gameObject.transform.position.y + 45,
         z: this.gameObject.transform.position.z - (direction.z * 40)
       },
       1
     );
-    //camera is always facing player
-
-    console.log(location, this.gameObject.transform.position)
-
-    // let playerPos = this.gameObject.transform.position.clone();
-    // playerPos.y += 5;
+    //camera is always facing the same direction as the player
     globals.camera.lookAt(this.gameObject.transform.position.x + direction.x + 10, 
       this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z);
 
-    if (inputManager.keys.a.down) {
-      globals.camera.position.lerp(
-        {
-          x:
-            this.gameObject.transform.position.x +
-            (scaleFactor * direction.x) / 2,
-          y: this.gameObject.transform.position.y - 10,
-          z:
-            this.gameObject.transform.position.z +
-            (scaleFactor * direction.z) / 2
-        },
-        0.5
-      );
+    if(inputManager.keys.a.justPressed) {
+      this.firstPersonView = !this.firstPersonView;
+
+      if(this.firstPersonView){
+        globals.camera.position.lerp(
+          {
+            x:
+              this.gameObject.transform.position.x +
+              (scaleFactor * direction.x) / 2,
+            y: this.gameObject.transform.position.y - 10,
+            z:
+              this.gameObject.transform.position.z +
+              (scaleFactor * direction.z) / 2
+          },
+          0.5
+        );
+      }
     }
 
     if (inputManager.keys.s.down) {
@@ -96,6 +97,8 @@ class Player extends Component {
         },
         0.5
       );
+
+      globals.camera.lookAt(this.gameObject.transform.position)
     }
   }
 }

@@ -23,7 +23,7 @@ class Animal extends Component {
       {
         idle: {
           enter: () => {
-            skinInstance.setAnimation("Idle");
+            skinInstance.setAnimation('Idle');
           },
           update: () => {
             // check if player is near
@@ -33,17 +33,18 @@ class Animal extends Component {
                 hitRadius,
                 playerTransform,
                 globals.playerRadius
-              )
+              ) &&
+              lose.style.display === 'none'
             ) {
               //this.fsm.transition("waitForEnd");
               // display win screen
-              blocker.style.display = "block";
-              win.style.display = "block";
+              blocker.style.display = 'block';
+              win.style.display = 'block';
             }
-          }
+          },
         },
       },
-      "idle"
+      'idle'
     );
   }
   update() {
