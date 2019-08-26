@@ -332,7 +332,6 @@ function main() {
     }
   }
 
-  const kForward = new THREE.Vector3(0, 0, 1);
   const globals = {
     time: 0,
     deltaTime: 0,

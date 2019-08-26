@@ -166,7 +166,6 @@ function main() {
     });
   }
 
-  const kForward = new THREE.Vector3(0, 0, 1);
   globals = {
     camera,
     canvas,
@@ -190,21 +189,20 @@ function main() {
       const gameObject = gameObjectManager.createGameObject(camera, "camera");
       globals.cameraInfo = gameObject.addComponent(CameraInfo);
     }
-
+    //below: adding 3D models to environment
     {
       const gameObject = gameObjectManager.createGameObject(scene, "player");
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
     }
-
     {
       const gameObject = gameObjectManager.createGameObject(scene, "zebra");
       globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
-      gameObject.transform.position.x = 2;
-      gameObject.transform.position.y = 5;
+      gameObject.transform.position.x = 7;
+      gameObject.transform.position.y = 2;
+      gameObject.transform.position.z = 2;
     }
-
     {
       const gameObject = gameObjectManager.createGameObject(scene, "horse");
       globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
@@ -237,16 +235,6 @@ function main() {
       globals.obstacles.push(globals.spider);
     }
 
-    // {
-    //   const gameObject = gameObjectManager.createGameObject(scene, "tree");
-    //   gameObject.addComponent(Obstacle, models["tree"]);
-    //   gameObject.transform.position.x = 0;
-    //   gameObject.transform.position.z = 0;
-    //   gameObject.transform.position.y = 0;
-    //   //globals.obstacles.push(globals.mushroom);
-    // }
-
-    // eslint-disable-next-line no-lone-blocks
     // first circle of trees
     {
       const radius = 55;
