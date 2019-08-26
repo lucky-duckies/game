@@ -9,6 +9,7 @@ let globals = {
   zebra: null,
   horse: null,
   duckCount: 0,
+  originalCount: 0,
   venus: null,
   spider: null,
   mushroom: null,
