@@ -20,7 +20,10 @@ html {
   font-size: 14px;
   line-height: 24px;
 }
-
+.life{
+  width: 64px;
+  height: 64px;
+}
 #lose {
   display: none;
 
@@ -209,4 +212,5 @@ canvas {
 #score {
   position: absolute;
   color: white;
+  font-size: large;
 }

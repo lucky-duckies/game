@@ -55,10 +55,16 @@ class Duck extends Component {
     );
   }
   update() {
+    let duckDisplay = () => {
+      let displayHTML = "Flock: ";
+      for(let count = 0; count < globals.duckCount; count++) {displayHTML += `<img class=life src="../../resources/images/duckicon.png"/>`}
+      return displayHTML;
+    }
+    //updates score in user view
     function duckCount() {
       document.getElementById(
         "score"
-      ).innerHTML = `Ducks left: ${globals.duckCount}`;
+      ).innerHTML = duckDisplay();
     }
     duckCount();
     this.fsm.update();

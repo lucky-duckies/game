@@ -61,11 +61,6 @@ class Player extends Component {
         matrix.extractRotation(transform.matrix);
     
         direction.applyMatrix4(matrix);
-    
-        //multiply vector to make it longer?
-        //add direction onto location of camera
-        let scaleFactor = 70;
-
 
     // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(
