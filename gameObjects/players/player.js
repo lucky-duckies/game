@@ -56,42 +56,46 @@ class Player extends Component {
       transform.translateOnAxis(direction, -1);
     }
 
-    //camera follows (position, at speed (between 0 and 1))
+        // the following code gets the direction vector that our bird is facing
+        const matrix = new THREE.Matrix4();
+        matrix.extractRotation(transform.matrix);
+    
+        direction.applyMatrix4(matrix);
+    
+        //multiply vector to make it longer?
+        //add direction onto location of camera
+        let scaleFactor = 70;
+
+
+    // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(
       {
-        x: this.gameObject.transform.position.x - 50,
-        y: this.gameObject.transform.position.y + 70,
-        z: this.gameObject.transform.position.z
+        //direction accounts for players rotation
+        x: this.gameObject.transform.position.x - (direction.x * 40),
+        y: this.gameObject.transform.position.y + 45,
+        z: this.gameObject.transform.position.z - (direction.z * 40)
       },
-      0.5
+      1
     );
+    //camera is always facing the same direction as the player
+    globals.camera.lookAt(this.gameObject.transform.position.x + direction.x + 10, 
+      this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z);
 
-    // the following code gets the direction vector that our bird is facing
-    var matrix = new THREE.Matrix4();
-    matrix.extractRotation(transform.matrix);
-
-    direction.applyMatrix4(matrix);
-
-    let scaleFactor = 70;
-
-    //camera is always facing player
-    globals.camera.lookAt(this.gameObject.transform.position);
-
-    if (inputManager.keys.a.down) {
-      globals.camera.position.lerp(
-        {
-          x:
-            this.gameObject.transform.position.x +
-            (scaleFactor * direction.x) / 2,
-          y: this.gameObject.transform.position.y - 10,
-          z:
-            this.gameObject.transform.position.z +
-            (scaleFactor * direction.z) / 2
-        },
-        0.5
-      );
+    //first person view
+    if(inputManager.keys.a.down) {
+        globals.camera.position.lerp(
+          {
+            x: this.gameObject.transform.position.x + (direction.x * 50),
+            y: this.gameObject.transform.position.y - 30,
+            z: this.gameObject.transform.position.z + (direction.z * 50)
+          },
+          0.5
+        );
+          globals.camera.lookAt(this.gameObject.transform.position.x + (direction.x * 100), 
+          this.gameObject.transform.position.y, this.gameObject.transform.position.z + (direction.z * 100))
     }
 
+    //overhead view
     if (inputManager.keys.s.down) {
       globals.camera.position.lerp(
         {
@@ -101,6 +105,8 @@ class Player extends Component {
         },
         0.5
       );
+
+      globals.camera.lookAt(this.gameObject.transform.position)
     }
   }
 }
