@@ -252,7 +252,7 @@ function main() {
       const radius = 55;
       let numTrees = 12;
       for (let i = 0; i < numTrees; i++) {
-        if (!(i > 5 && i < 8)) {
+        if ( (i!== 11)) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
           gameObject.addComponent(Tree, models["tree"]);
           gameObject.transform.position.x =
@@ -263,12 +263,27 @@ function main() {
       }
     }
 
+    {
+      const radius = 80;
+      let numTrees = 20;
+      for (let i = 0; i < numTrees; i++) {
+        if ( i=== 1 || i ===8 || i === 18) {
+          const gameObject = gameObjectManager.createGameObject(scene, "tree");
+          gameObject.addComponent(Obstacle, models["tree"]);
+          gameObject.transform.position.x =
+            Math.cos(i * (Math.PI / 12)) * radius;
+          gameObject.transform.position.z =
+            Math.sin(i * (Math.PI / 12)) * radius;
+        }
+      }
+    }
+
     // second circle of trees
     {
       const radius = 105;
       let numTrees = 24;
       for (let i = 0; i < numTrees; i++) {
-        if (!(i > 5 && i < 8)) {
+        if ( !( i > 11 && i < 13) && i!== 10 && !( i > 6 && i < 8) && ( i!== 2) && ( i!== 23) && ( i!== 17)) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
           gameObject.addComponent(Tree, models["tree"]);
           gameObject.transform.position.x =
@@ -279,11 +294,28 @@ function main() {
       }
     }
 
+    // trees connecting outer circle with middle circle
+    {
+      const radius = 130;
+      let numTrees = 50;
+      for (let i = 0; i < numTrees; i++) {
+        if ( i=== 23 || i === 32 || i=== 36 || i === 6) {
+          const gameObject = gameObjectManager.createGameObject(scene, "tree");
+          gameObject.addComponent(Obstacle, models["tree"]);
+          gameObject.transform.position.x =
+            Math.cos(i * (Math.PI / 24)) * radius;
+          gameObject.transform.position.z =
+            Math.sin(i * (Math.PI / 24)) * radius;
+        }
+      }
+    }
+
+
     {
       const radius = 155;
       let numTrees = 50;
       for (let i = 0; i < numTrees; i++) {
-        if (!(i > 5 && i < 8)) {
+        if (!(i > 23 && i < 26)) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
           gameObject.addComponent(Tree, models["tree"]);
           gameObject.transform.position.x =
