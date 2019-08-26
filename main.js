@@ -348,9 +348,9 @@ function main() {
 
   {
     const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl("resources/models/pond/floor.mtl", null, materials => {
+    objLoader.loadMtl("resources/models/pond/floor2.mtl", null, materials => {
       objLoader.setMaterials(materials);
-      objLoader.load("resources/models/pond/floor.obj", event => {
+      objLoader.load("resources/models/pond/floor2.obj", event => {
         const root = event.detail.loaderRootNode;
         scene.add(root);
       });
@@ -360,12 +360,13 @@ function main() {
   {
     const objLoader = new THREE.OBJLoader2();
     objLoader.loadMtl(
-      "resources/models/pond/floorOutside.mtl",
+      "resources/models/pond/floorOutside2.mtl",
       null,
       materials => {
         objLoader.setMaterials(materials);
-        objLoader.load("resources/models/pond/floorOutside.obj", event => {
+        objLoader.load("resources/models/pond/floorOutside2.obj", event => {
           const root = event.detail.loaderRootNode;
+
           scene.add(root);
         });
       }
