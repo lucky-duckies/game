@@ -9,7 +9,6 @@ class Player extends Component {
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
-    this.firstPersonView = false;
   }
   update() {
     const { deltaTime, moveSpeed } = globals;
@@ -69,25 +68,21 @@ class Player extends Component {
     globals.camera.lookAt(this.gameObject.transform.position.x + direction.x + 10, 
       this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z);
 
-    if(inputManager.keys.a.justPressed) {
-      this.firstPersonView = !this.firstPersonView;
-
-      if(this.firstPersonView){
+    //first person view
+    if(inputManager.keys.a.down) {
         globals.camera.position.lerp(
           {
-            x:
-              this.gameObject.transform.position.x +
-              (scaleFactor * direction.x) / 2,
-            y: this.gameObject.transform.position.y - 10,
-            z:
-              this.gameObject.transform.position.z +
-              (scaleFactor * direction.z) / 2
+            x: this.gameObject.transform.position.x + (direction.x * 50),
+            y: this.gameObject.transform.position.y - 30,
+            z: this.gameObject.transform.position.z + (direction.z * 50)
           },
           0.5
         );
-      }
+          globals.camera.lookAt(this.gameObject.transform.position.x + (direction.x * 100), 
+          this.gameObject.transform.position.y, this.gameObject.transform.position.z + (direction.z * 100))
     }
 
+    //overhead view
     if (inputManager.keys.s.down) {
       globals.camera.position.lerp(
         {

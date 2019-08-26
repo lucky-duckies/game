@@ -36,7 +36,6 @@ class Animal extends Component {
               ) &&
               lose.style.display === 'none'
             ) {
-              //this.fsm.transition("waitForEnd");
               // display win screen
               blocker.style.display = 'block';
               win.style.display = 'block';
