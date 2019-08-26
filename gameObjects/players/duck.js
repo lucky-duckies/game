@@ -56,7 +56,7 @@ class Duck extends Component {
   }
   update() {
     let duckDisplay = () => {
-      let displayHTML = "";
+      let displayHTML = "Flock: ";
       for(let count = 0; count < globals.duckCount; count++) {displayHTML += `<img class=life src="../../resources/images/duckicon.png"/>`}
       return displayHTML;
     }

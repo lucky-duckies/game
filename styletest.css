@@ -212,4 +212,5 @@ canvas {
 #score {
   position: absolute;
   color: white;
+  font-size: large;
 }
