@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable complexity */
 class Player extends Component {
   constructor(gameObject) {
@@ -21,6 +22,18 @@ class Player extends Component {
 
     // direction vector is initialized to point in the same direction of the head of the bird
     let direction = new THREE.Vector3(1, 0, 0);
+
+    // fire fireball on press of "d" key
+    if (inputManager.keys.d.down) {
+      // create fireball
+      const gameObject = gameObjectManager.createGameObject(scene, "fireball");
+      globals.fireball = gameObject.addComponent(Fireball, direction);
+      // make sure fireball starting location in where the player is right now
+      gameObject.transform.position.x = transform.position.x;
+      gameObject.transform.position.z = transform.position.z;
+      gameObject.transform.position.y = 5;
+      globals.fireballs.push(globals.fireball);
+    }
 
     // rotate 10 degrees on right arrow key press
     if (inputManager.keys.right.down) {

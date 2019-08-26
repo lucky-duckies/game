@@ -88,17 +88,11 @@ function main() {
   };
 
   const models = {
-    zebra: { url: "../resources/models/animals/Zebra.gltf" },
-    venus: { url: "../resources/models/venus_flytrap/plant.gltf" },
-    mushroom: { url: "../resources/models/mushroom/scene.gltf" },
-    spider: { url: "../resources/models/spider/scene.gltf" },
-    horse: { url: "../resources/models/animals/Horse.gltf" },
-    knight: { url: "../resources/models/knight/KnightCharacter.gltf" },
-    phoenix: { url: "../resources/models/animals/scene.gltf" },
-
-
-    }
-
+    zebra: { url: "resources/models/animals/Zebra.gltf" },
+    horse: { url: "resources/models/animals/Horse.gltf" },
+    knight: { url: "resources/models/knight/KnightCharacter.gltf" },
+    phoenix: { url: "resources/models/animals/scene.gltf" },
+    fire: { url: "../resources/models/fire/fire.gltf" }
   };
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
