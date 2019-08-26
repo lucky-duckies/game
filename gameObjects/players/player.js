@@ -43,34 +43,34 @@ class Player extends Component {
       transform.translateOnAxis(direction, -1);
     }
 
+        // the following code gets the direction vector that our bird is facing
+        const matrix = new THREE.Matrix4();
+        matrix.extractRotation(transform.matrix);
+    
+        direction.applyMatrix4(matrix);
+    
+        //multiply vector to make it longer?
+        //add direction onto location of camera
+        let scaleFactor = 70;
+
+
     // camera follows (position, at speed (between 0 and 1))
     globals.camera.position.lerp(
       {
-        x: this.gameObject.transform.position.x,
-        y: this.gameObject.transform.position.y + 30,
-        z: this.gameObject.transform.position.z 
+        x: this.gameObject.transform.position.x - (direction.x * 40),
+        y: this.gameObject.transform.position.y + 45,
+        z: this.gameObject.transform.position.z - (direction.z * 40)
       },
       1
     );
-
-    // the following code gets the direction vector that our bird is facing
-    const matrix = new THREE.Matrix4();
-    matrix.extractRotation(transform.matrix);
-
-    direction.applyMatrix4(matrix);
-
-    // console.log(direction);
-    // console.log(this.gameObject.transform.position)
-
-    //multiply vector to make it longer?
-    //add direction onto location of camera
-    let scaleFactor = 70;
-
     //camera is always facing player
+
+    console.log(location, this.gameObject.transform.position)
 
     // let playerPos = this.gameObject.transform.position.clone();
     // playerPos.y += 5;
-    globals.camera.lookAt(this.gameObject.transform.position.x + direction.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z,  );
+    globals.camera.lookAt(this.gameObject.transform.position.x + direction.x + 10, 
+      this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z);
 
     if (inputManager.keys.a.down) {
       globals.camera.position.lerp(
