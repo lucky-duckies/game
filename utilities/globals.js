@@ -13,7 +13,10 @@ let globals = {
   spider: null,
   mushroom: null,
   obstacles: [],
-  environment: []
+  environment: [],
+  fireballs: []
 };
 
 let inputManager = null;
+let gameObjectManager = null;
+let scene = null;
