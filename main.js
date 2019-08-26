@@ -175,6 +175,7 @@ function main() {
     deltaTime: 0,
     player: null,
     duckCount: 0,
+    originalCount: 0,
     obstacles: [],
     environment: [],
     fireballs: []
@@ -329,6 +330,7 @@ function main() {
         gameObject.transform.position.x = -130 - ndx * 7;
         gameObject.transform.position.y = 0;
       });
+      globals.originalCount = globals.duckCount;
     }
 
     const animalModelNames = ["zebra", "horse", "phoenix"];
