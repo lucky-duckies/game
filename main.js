@@ -267,7 +267,7 @@ function main() {
       const radius = 105;
       let numTrees = 24;
       for (let i = 0; i < numTrees; i++) {
-        if (!(i > 5 && i <8 )) {
+        if (!(i > 2 && i < 4 ) && i!== 1 && !(i > 20 && i < 22) && !(i > 15 && i < 17) && !( i > 10 && i < 12)) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
           gameObject.addComponent(Obstacle, models["tree"]);
           gameObject.transform.position.x =
@@ -282,7 +282,7 @@ function main() {
       const radius = 155;
       let numTrees = 50;
       for (let i = 0; i < numTrees; i++) {
-        if (!(i > 5 && i <8 )) {
+        if (!(i > 4 && i < 7 )) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
           gameObject.addComponent(Obstacle, models["tree"]);
           gameObject.transform.position.x =
