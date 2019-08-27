@@ -20,7 +20,6 @@ class Duck extends Component {
 
     const transform = gameObject.transform;
     const obstacles = globals.obstacles;
-
     const hitRadius = model.size / 2;
 
     this.collidingWithTree = false;
@@ -71,6 +70,7 @@ class Duck extends Component {
     );
   }
   update() {
+    //retrieves numbers of present and lost ducks from global variables and renders living/lost icons accordingly
     let duckDisplay = () => {
       let displayHTML = "";
       for (let count = 0; count < globals.duckCount; count++) {
@@ -95,10 +95,14 @@ class Duck extends Component {
     this.fsm.update();
 
     if (!this.isCaught) {
-      const { deltaTime, moveSpeed } = globals;
       const { transform } = this.gameObject;
-      transform.position.x = globals.player.gameObject.transform.position.x;
-      transform.position.z = globals.player.gameObject.transform.position.z;
+
+      //gets direction of the main player and follows behind at that orientation
+      let direction = globals.player.gameObject.components[1].direction;
+      let leader = globals.congaLine[this.gameObject.congaNdx-1];
+      transform.position.z = leader.transform.position.z - (direction.z * 10);
+      transform.position.x = leader.transform.position.x - (direction.x * 10);
+      transform.rotation.y = leader.transform.rotation.y;
     }
   }
 }

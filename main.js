@@ -179,7 +179,8 @@ function main() {
     obstacles: [],
     environment: [],
     fireballs: [],
-    trees: []
+    trees: [],
+    congaLine: []
   };
   gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -321,17 +322,20 @@ function main() {
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
+      globals.congaLine.push(globals.player.gameObject);
     }
     {
       const ducks = ["duck", "duck", "duck"];
       ducks.forEach((name, ndx) => {
         globals.duckCount++;
-        const gameObject = gameObjectManager.createGameObject(scene, name);
+        const gameObject = gameObjectManager.createGameObject(scene, name, ndx+1);
         gameObject.addComponent(Duck);
         gameObject.transform.position.x = -130 - ndx * 7;
         gameObject.transform.position.y = 0;
+        globals.congaLine.push(gameObject);
       });
       globals.originalCount = globals.duckCount;
+      console.log(globals.congaLine)
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mama");
@@ -340,25 +344,7 @@ function main() {
       gameObject.transform.position.y = 2;
       gameObject.transform.position.z = 2;
     }
-    const animalModelNames = ["zebra", "horse", "phoenix"];
   }
-
-  // loading obj trees
-  // {
-  //   const objLoader = new THREE.OBJLoader2();
-  //   objLoader.loadMtl(
-  //     "resources/models/windmill/tree3.mtl",
-  //     null,
-  //     materials => {
-  //       objLoader.setMaterials(materials);
-  //       objLoader.load("resources/models/windmill/tree3.obj", event => {
-  //         const root = event.detail.loaderRootNode;
-  //         scene.add(root);
-  //       });
-  //     }
-  //   );
-  // }
-
   {
     const objLoader = new THREE.OBJLoader2();
     objLoader.loadMtl("resources/models/pond/flower2.mtl", null, materials => {

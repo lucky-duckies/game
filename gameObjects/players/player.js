@@ -76,13 +76,13 @@ class Player extends Component {
 
     // rotate 10 degrees on right arrow key press
     if (inputManager.keys.right.down) {
-      transform.rotation.y -= Math.PI / 36;
+      transform.rotation.y -= Math.PI / 72;
     }
 
     // rotate 10 degrees on left arrow key press
     if (inputManager.keys.left.down) {
       // rotates 10 degrees
-      transform.rotation.y += Math.PI / 36;
+      transform.rotation.y += Math.PI / 72;
     }
 
     // move in direction of head by one unit
@@ -98,24 +98,24 @@ class Player extends Component {
     // the following code gets the direction vector that our bird is facing
     const matrix = new THREE.Matrix4();
     matrix.extractRotation(transform.matrix);
-
     direction.applyMatrix4(matrix);
+    this.direction = direction;
 
     // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(
       {
         //direction accounts for players rotation
-        x: this.gameObject.transform.position.x - direction.x * 40,
-        y: this.gameObject.transform.position.y + 45,
-        z: this.gameObject.transform.position.z - direction.z * 40
+        x: this.gameObject.transform.position.x - direction.x * 50,
+        y: this.gameObject.transform.position.y + 50,
+        z: this.gameObject.transform.position.z - direction.z * 50
       },
       1
     );
     //camera is always facing the same direction as the player
     globals.camera.lookAt(
-      this.gameObject.transform.position.x + direction.x + 10,
+      this.gameObject.transform.position.x + direction.x * 20,
       this.gameObject.transform.position.y,
-      this.gameObject.transform.position.z + direction.z
+      this.gameObject.transform.position.z + direction.z * 20
     );
 
     //first person view

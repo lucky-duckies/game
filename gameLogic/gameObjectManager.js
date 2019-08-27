@@ -2,8 +2,8 @@ class GameObjectManager {
   constructor() {
     this.gameObjects = new SafeArray();
   }
-  createGameObject(parent, name) {
-    const gameObject = new GameObject(parent, name);
+  createGameObject(parent, name, congaNdx = null) {
+    const gameObject = new GameObject(parent, name, congaNdx);
     this.gameObjects.add(gameObject);
     return gameObject;
   }
