@@ -224,8 +224,8 @@ function main() {
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -85;
+      gameObject.transform.position.x = 70;
+      gameObject.transform.position.z = 120;
       globals.obstacles.push(globals.venus);
     }
     {
