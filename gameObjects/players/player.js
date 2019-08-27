@@ -10,8 +10,32 @@ class Player extends Component {
     this.turnSpeed = globals.moveSpeed / 4;
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
+    this.collidingWithTree = false;
+
+    const transform = gameObject.transform;
+    const trees = globals.trees;
+
+    this.fsm = new FiniteStateMachine(
+      {
+        idle: {
+          enter: () => {
+            //skinInstance.setAnimation("Idle");
+          },
+          update: () => {
+            // check if player is near tree
+            for (let i = 0; i < trees.length; i++) {
+              if (isClose(transform, 7, trees[i].gameObject.transform, 10)) {
+                this.collidingWithTree = true;
+              }
+            }
+          }
+        }
+      },
+      "idle"
+    );
   }
   update() {
+    this.fsm.update();
     const { deltaTime, moveSpeed } = globals;
     const { transform } = this.gameObject;
     const delta =
@@ -22,6 +46,21 @@ class Player extends Component {
 
     // direction vector is initialized to point in the same direction of the head of the bird
     let direction = new THREE.Vector3(1, 0, 0);
+
+    let dir = new THREE.Vector3(1, 0, 0);
+
+    if (this.collidingWithTree) {
+      // the following code gets the direction vector that our bird is facing
+      const matrix = new THREE.Matrix4();
+      matrix.extractRotation(transform.matrix);
+
+      dir.applyMatrix4(matrix);
+      dir.normalize();
+
+      transform.position.x -= dir.x;
+      transform.position.z -= dir.z;
+      this.collidingWithTree = false;
+    }
 
     // fire fireball on press of "d" key
     if (inputManager.keys.d.down) {
@@ -56,38 +95,44 @@ class Player extends Component {
       transform.translateOnAxis(direction, -1);
     }
 
-        // the following code gets the direction vector that our bird is facing
-        const matrix = new THREE.Matrix4();
-        matrix.extractRotation(transform.matrix);
-    
-        direction.applyMatrix4(matrix);
+    // the following code gets the direction vector that our bird is facing
+    const matrix = new THREE.Matrix4();
+    matrix.extractRotation(transform.matrix);
+
+    direction.applyMatrix4(matrix);
 
     // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(
       {
         //direction accounts for players rotation
-        x: this.gameObject.transform.position.x - (direction.x * 40),
+        x: this.gameObject.transform.position.x - direction.x * 40,
         y: this.gameObject.transform.position.y + 45,
-        z: this.gameObject.transform.position.z - (direction.z * 40)
+        z: this.gameObject.transform.position.z - direction.z * 40
       },
       1
     );
     //camera is always facing the same direction as the player
-    globals.camera.lookAt(this.gameObject.transform.position.x + direction.x + 10, 
-      this.gameObject.transform.position.y, this.gameObject.transform.position.z + direction.z);
+    globals.camera.lookAt(
+      this.gameObject.transform.position.x + direction.x + 10,
+      this.gameObject.transform.position.y,
+      this.gameObject.transform.position.z + direction.z
+    );
 
     //first person view
-    if(inputManager.keys.a.down) {
-        globals.camera.position.lerp(
-          {
-            x: this.gameObject.transform.position.x + (direction.x * 50),
-            y: this.gameObject.transform.position.y - 30,
-            z: this.gameObject.transform.position.z + (direction.z * 50)
-          },
-          0.5
-        );
-          globals.camera.lookAt(this.gameObject.transform.position.x + (direction.x * 100), 
-          this.gameObject.transform.position.y, this.gameObject.transform.position.z + (direction.z * 100))
+    if (inputManager.keys.a.down) {
+      globals.camera.position.lerp(
+        {
+          x: this.gameObject.transform.position.x + direction.x * 50,
+          y: this.gameObject.transform.position.y - 30,
+          z: this.gameObject.transform.position.z + direction.z * 50
+        },
+        0.5
+      );
+      globals.camera.lookAt(
+        this.gameObject.transform.position.x + direction.x * 100,
+        this.gameObject.transform.position.y,
+        this.gameObject.transform.position.z + direction.z * 100
+      );
     }
 
     //overhead view
@@ -101,7 +146,7 @@ class Player extends Component {
         0.5
       );
 
-      globals.camera.lookAt(this.gameObject.transform.position)
+      globals.camera.lookAt(this.gameObject.transform.position);
     }
   }
 }
