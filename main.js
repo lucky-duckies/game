@@ -322,6 +322,7 @@ function main() {
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
+      globals.congaLine.push(globals.player.gameObject);
     }
     {
       const ducks = ["duck", "duck", "duck"];
@@ -331,8 +332,10 @@ function main() {
         gameObject.addComponent(Duck);
         gameObject.transform.position.x = -130 - ndx * 7;
         gameObject.transform.position.y = 0;
+        globals.congaLine.push(gameObject);
       });
       globals.originalCount = globals.duckCount;
+      console.log(globals.congaLine)
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mama");

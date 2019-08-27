@@ -105,9 +105,9 @@ class Player extends Component {
     globals.camera.position.lerp(
       {
         //direction accounts for players rotation
-        x: this.gameObject.transform.position.x - direction.x * 40,
+        x: this.gameObject.transform.position.x - direction.x * 50,
         y: this.gameObject.transform.position.y + 50,
-        z: this.gameObject.transform.position.z - direction.z * 40
+        z: this.gameObject.transform.position.z - direction.z * 50
       },
       1
     );
