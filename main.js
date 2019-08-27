@@ -229,6 +229,13 @@ function main() {
       globals.obstacles.push(globals.venus);
     }
     {
+      const gameObject = gameObjectManager.createGameObject(scene, "venus");
+      globals.venus = gameObject.addComponent(Venus, models["venus"]);
+      gameObject.transform.position.x = -115;
+      gameObject.transform.position.z = 50;
+      globals.obstacles.push(globals.venus);
+    }
+    {
       const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
       globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
       gameObject.transform.position.x = 25;
