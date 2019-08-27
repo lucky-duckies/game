@@ -97,53 +97,8 @@ class Duck extends Component {
     if (!this.isCaught) {
       const { deltaTime, moveSpeed } = globals;
       const { transform } = this.gameObject;
-      const delta =
-        (inputManager.keys.left.down ? 1 : 0) +
-        (inputManager.keys.right.down ? -1 : 0);
-
-      // direction vector is initialized to point in the same direction of the head of the bird
-      let direction = new THREE.Vector3(1, 0, 0);
-
-      let dir = new THREE.Vector3(1, 0, 0);
-
-      if (this.collidingWithTree) {
-        // the following code gets the direction vector that our bird is facing
-        const matrix = new THREE.Matrix4();
-        matrix.extractRotation(transform.matrix);
-
-        dir.applyMatrix4(matrix);
-        dir.normalize();
-
-        transform.position.x -= dir.x;
-        transform.position.z -= dir.z;
-        this.collidingWithTree = false;
-      }
-
-      // rotate 90 degrees on right arrow key press
-      if (inputManager.keys.right.down) {
-        transform.rotation.y -= Math.PI / 36;
-      }
-
-      // rotate 90 degrees on left arrow key press
-      if (inputManager.keys.left.down) {
-        transform.rotation.y += Math.PI / 36;
-
-        // the following code gets the direction vector that our bird is facing
-        var matrix = new THREE.Matrix4();
-        matrix.extractRotation(transform.matrix);
-
-        direction.applyMatrix4(matrix);
-      }
-
-      // move in direction of head by one unit
-      if (inputManager.keys.up.down) {
-        transform.translateOnAxis(direction, 1);
-      }
-
-      // move backwards
-      if (inputManager.keys.down.down) {
-        transform.translateOnAxis(direction, -1);
-      }
+      transform.position.x = globals.player.gameObject.transform.position.x;
+      transform.position.z = globals.player.gameObject.transform.position.z;
     }
   }
 }
