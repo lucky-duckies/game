@@ -213,13 +213,6 @@ function main() {
       gameObject.transform.position.z = 2;
 
     }
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "horse");
-      globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -105;
-      globals.obstacles.push(globals.horse);
-    }
 
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
@@ -239,18 +232,28 @@ function main() {
       const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
       globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
       gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -135;
+      gameObject.transform.position.z = -125;
 
       globals.obstacles.push(globals.mushroom);
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "spider");
       globals.spider = gameObject.addComponent(Spider, models["spider"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -205;
+      gameObject.transform.position.x = -20;
+      gameObject.transform.position.z = -105;
 
       globals.obstacles.push(globals.spider);
     }
+
+    // bee lost her skins, needs fixing
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "bee");
+    //   globals.bee = gameObject.addComponent(Bee, models["bee"]);
+    //   gameObject.transform.position.x = -200;
+    //   gameObject.transform.position.z = -105;
+
+    //   globals.obstacles.push(globals.bee);
+    // }
 
     // first circle of trees
     {
