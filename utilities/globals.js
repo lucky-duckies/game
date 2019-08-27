@@ -8,7 +8,6 @@ let globals = {
   player: null,
   zebra: null,
   mama: null,
-  horse: null,
   duckCount: 0,
   originalCount: 0,
   venus: null,
