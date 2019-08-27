@@ -16,12 +16,15 @@ class Duck extends Component {
     this.offscreenTimer = 0;
     this.maxTimeOffScreen = 3;
     this.isCaught = false;
-    this.uncaught = true
+    this.uncaught = true;
 
     const transform = gameObject.transform;
     const obstacles = globals.obstacles;
-    const playerTransform = globals.horse.gameObject.transform;
+
     const hitRadius = model.size / 2;
+
+    this.collidingWithTree = false;
+    const trees = globals.trees;
 
     this.fsm = new FiniteStateMachine(
       {
@@ -30,19 +33,32 @@ class Duck extends Component {
             //skinInstance.setAnimation("Idle");
           },
           update: () => {
-
-            // check if duck is near obstacle
-            for (let i = 0; i < obstacles.length; i++){
-            if (isClose(transform, hitRadius, obstacles[i].gameObject.transform, 3)) {
-              this.isCaught = true;
-
-              //ensures that the duckCount only decrements once
-              if (this.isCaught && this.uncaught) {
-                this.uncaught = false;
-                globals.duckCount--;
+            // check if duck is near tree
+            for (let i = 0; i < trees.length; i++) {
+              if (isClose(transform, 7, trees[i].gameObject.transform, 10)) {
+                this.collidingWithTree = true;
               }
             }
-          }
+
+            // check if duck is near obstacle
+            for (let i = 0; i < obstacles.length; i++) {
+              if (
+                isClose(
+                  transform,
+                  hitRadius,
+                  obstacles[i].gameObject.transform,
+                  3
+                )
+              ) {
+                this.isCaught = true;
+
+                //ensures that the duckCount only decrements once
+                if (this.isCaught && this.uncaught) {
+                  this.uncaught = false;
+                  globals.duckCount--;
+                }
+              }
+            }
             //display lose screen
             if (globals.duckCount === 0 && win.style.display === "none") {
               blocker.style.display = "block";
@@ -57,19 +73,23 @@ class Duck extends Component {
   update() {
     let duckDisplay = () => {
       let displayHTML = "";
-      for(let count = 0; count < globals.duckCount; count++) {displayHTML += `<img class=life src="../../resources/images/duckicon.png"/>`}
-      if(globals.duckCount < globals.originalCount){
-        for (let lostDucks = 0; lostDucks < (globals.originalCount - globals.duckCount); lostDucks++){
-          displayHTML += `<img class=life src="../../resources/images/lostduck.png"/>`
+      for (let count = 0; count < globals.duckCount; count++) {
+        displayHTML += `<img class=life src="../../resources/images/duckicon.png"/>`;
+      }
+      if (globals.duckCount < globals.originalCount) {
+        for (
+          let lostDucks = 0;
+          lostDucks < globals.originalCount - globals.duckCount;
+          lostDucks++
+        ) {
+          displayHTML += `<img class=life src="../../resources/images/lostduck.png"/>`;
         }
       }
       return displayHTML;
-    }
+    };
     //updates score in user view
     function duckCount() {
-      document.getElementById(
-        "score"
-      ).innerHTML = duckDisplay();
+      document.getElementById("score").innerHTML = duckDisplay();
     }
     duckCount();
     this.fsm.update();
@@ -83,6 +103,21 @@ class Duck extends Component {
 
       // direction vector is initialized to point in the same direction of the head of the bird
       let direction = new THREE.Vector3(1, 0, 0);
+
+      let dir = new THREE.Vector3(1, 0, 0);
+
+      if (this.collidingWithTree) {
+        // the following code gets the direction vector that our bird is facing
+        const matrix = new THREE.Matrix4();
+        matrix.extractRotation(transform.matrix);
+
+        dir.applyMatrix4(matrix);
+        dir.normalize();
+
+        transform.position.x -= dir.x;
+        transform.position.z -= dir.z;
+        this.collidingWithTree = false;
+      }
 
       // rotate 90 degrees on right arrow key press
       if (inputManager.keys.right.down) {

@@ -10,5 +10,6 @@ const models = {
   mushroom: { url: "resources/models/mushroom/mushroom.gltf" },
   tree: { url: "resources/models/trees/test.gltf" },
   fireball: { url: "resources/models/fireball/fireball.gltf" },
-  fire: { url: "resources/models/fire/fire.gltf" }
+  fire: { url: "resources/models/fire/fire.gltf" },
+  forcefield: { url: "resources/models/forcefield/forcefield.gltf" }
 };

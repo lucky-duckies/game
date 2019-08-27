@@ -29,8 +29,8 @@ function main() {
   let camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.set(0, 70, 40);
   // adding background music to the game
-  // camera.add(listener);
-  // // create a global audio source
+  camera.add(listener);
+  // create a global audio source
   // var sound = new THREE.Audio(listener);
 
   // var audioLoader = new THREE.AudioLoader();
@@ -178,8 +178,7 @@ function main() {
     originalCount: 0,
     obstacles: [],
     environment: [],
-    fireballs: [],
-    trees: []
+    fireballs: []
   };
   gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -194,154 +193,162 @@ function main() {
     //below: adding 3D models to environment
 
     {
-      const gameObject = gameObjectManager.createGameObject(scene, "mama");
-      globals.zebra = gameObject.addComponent(Mama, models["mama"]);
+      const gameObject = gameObjectManager.createGameObject(scene, "zebra");
+      globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
       gameObject.transform.position.x = 7;
       gameObject.transform.position.y = 2;
       gameObject.transform.position.z = 2;
     }
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "horse");
-      globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -105;
-      globals.obstacles.push(globals.horse);
-    }
 
     {
-      const gameObject = gameObjectManager.createGameObject(scene, "venus");
-      globals.venus = gameObject.addComponent(Venus, models["venus"]);
-      gameObject.transform.position.x = 70;
-      gameObject.transform.position.z = 120;
-      globals.obstacles.push(globals.venus);
-    }
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "venus");
-      globals.venus = gameObject.addComponent(Venus, models["venus"]);
-      gameObject.transform.position.x = -115;
-      gameObject.transform.position.z = 50;
-      globals.obstacles.push(globals.venus);
-    }
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
-      globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -135;
-
-      globals.obstacles.push(globals.mushroom);
-    }
-    {
-      const gameObject = gameObjectManager.createGameObject(scene, "spider");
-      globals.spider = gameObject.addComponent(Spider, models["spider"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -205;
-
-      globals.obstacles.push(globals.spider);
+      const gameObject = gameObjectManager.createGameObject(
+        scene,
+        "forcefield"
+      );
+      globals.forcefield = gameObject.addComponent(
+        Animal,
+        models["forcefield"]
+      );
+      gameObject.transform.position.x = -130;
+      gameObject.transform.position.y = 5;
     }
 
-    // first circle of trees
-    {
-      const radius = 55;
-      let numTrees = 12;
-      for (let i = 0; i < numTrees; i++) {
-        if (i !== 11) {
-          const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Tree, models["tree"]));
-          gameObject.transform.position.x =
-            Math.cos(i * (Math.PI / 6)) * radius;
-          gameObject.transform.position.z =
-            Math.sin(i * (Math.PI / 6)) * radius;
-        }
-      }
-    }
-
-    {
-      const radius = 80;
-      let numTrees = 20;
-      for (let i = 0; i < numTrees; i++) {
-        if (i === 1 || i === 8 || i === 18) {
-          const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Obstacle, models["tree"]));
-          gameObject.transform.position.x =
-            Math.cos(i * (Math.PI / 12)) * radius;
-          gameObject.transform.position.z =
-            Math.sin(i * (Math.PI / 12)) * radius;
-        }
-      }
-    }
-
-    // second circle of trees
-    {
-      const radius = 105;
-      let numTrees = 24;
-      for (let i = 0; i < numTrees; i++) {
-        if (
-          !(i > 11 && i < 13) &&
-          i !== 10 &&
-          !(i > 6 && i < 8) &&
-          i !== 2 &&
-          i !== 23 &&
-          i !== 17
-        ) {
-          const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Tree, models["tree"]));
-          gameObject.transform.position.x =
-            Math.cos(i * (Math.PI / 12)) * radius;
-          gameObject.transform.position.z =
-            Math.sin(i * (Math.PI / 12)) * radius;
-        }
-      }
-    }
-
-    // trees connecting outer circle with middle circle
-    {
-      const radius = 130;
-      let numTrees = 50;
-      for (let i = 0; i < numTrees; i++) {
-        if (i === 23 || i === 32 || i === 36 || i === 6) {
-          const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Obstacle, models["tree"]));
-          gameObject.transform.position.x =
-            Math.cos(i * (Math.PI / 24)) * radius;
-          gameObject.transform.position.z =
-            Math.sin(i * (Math.PI / 24)) * radius;
-        }
-      }
-    }
-
-    {
-      const radius = 155;
-      let numTrees = 50;
-      for (let i = 0; i < numTrees; i++) {
-        if (!(i > 23 && i < 26)) {
-          const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Tree, models["tree"]));
-          gameObject.transform.position.x =
-            Math.cos(i * (Math.PI / 24)) * radius;
-          gameObject.transform.position.z =
-            Math.sin(i * (Math.PI / 24)) * radius;
-        }
-      }
-    }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "player");
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
     }
-    {
-      const ducks = ["duck", "duck", "duck"];
-      ducks.forEach((name, ndx) => {
-        globals.duckCount++;
-        const gameObject = gameObjectManager.createGameObject(scene, name);
-        gameObject.addComponent(Duck);
-        gameObject.transform.position.x = -130 - ndx * 7;
-        gameObject.transform.position.y = 0;
-      });
-      globals.originalCount = globals.duckCount;
-    }
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "horse");
+    //   globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
+    //   gameObject.transform.position.x = 25;
+    //   gameObject.transform.position.z = -105;
+    //   globals.obstacles.push(globals.horse);
+    // }
 
-    const animalModelNames = ["zebra", "horse", "phoenix"];
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "venus");
+    //   globals.venus = gameObject.addComponent(Venus, models["venus"]);
+    //   gameObject.transform.position.x = 25;
+    //   gameObject.transform.position.z = -85;
+    //   globals.obstacles.push(globals.venus);
+    // }
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
+    //   globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
+    //   gameObject.transform.position.x = 25;
+    //   gameObject.transform.position.z = -135;
+
+    //   globals.obstacles.push(globals.mushroom);
+    // }
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "spider");
+    //   globals.spider = gameObject.addComponent(Spider, models["spider"]);
+    //   gameObject.transform.position.x = 25;
+    //   gameObject.transform.position.z = -205;
+
+    //   globals.obstacles.push(globals.spider);
+    // }
+
+    // first circle of trees
+    // {
+    //   const radius = 55;
+    //   let numTrees = 12;
+    //   for (let i = 0; i < numTrees; i++) {
+    //     if (i !== 11) {
+    //       const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //       gameObject.addComponent(Tree, models["tree"]);
+    //       gameObject.transform.position.x =
+    //         Math.cos(i * (Math.PI / 6)) * radius;
+    //       gameObject.transform.position.z =
+    //         Math.sin(i * (Math.PI / 6)) * radius;
+    //     }
+    //   }
+    // }
+
+    // {
+    //   const radius = 80;
+    //   let numTrees = 20;
+    //   for (let i = 0; i < numTrees; i++) {
+    //     if (i === 1 || i === 8 || i === 18) {
+    //       const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //       gameObject.addComponent(Obstacle, models["tree"]);
+    //       gameObject.transform.position.x =
+    //         Math.cos(i * (Math.PI / 12)) * radius;
+    //       gameObject.transform.position.z =
+    //         Math.sin(i * (Math.PI / 12)) * radius;
+    //     }
+    //   }
+    // }
+
+    // // second circle of trees
+    // {
+    //   const radius = 105;
+    //   let numTrees = 24;
+    //   for (let i = 0; i < numTrees; i++) {
+    //     if (
+    //       !(i > 11 && i < 13) &&
+    //       i !== 10 &&
+    //       !(i > 6 && i < 8) &&
+    //       i !== 2 &&
+    //       i !== 23 &&
+    //       i !== 17
+    //     ) {
+    //       const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //       gameObject.addComponent(Tree, models["tree"]);
+    //       gameObject.transform.position.x =
+    //         Math.cos(i * (Math.PI / 12)) * radius;
+    //       gameObject.transform.position.z =
+    //         Math.sin(i * (Math.PI / 12)) * radius;
+    //     }
+    //   }
+    // }
+
+    // // trees connecting outer circle with middle circle
+    // {
+    //   const radius = 130;
+    //   let numTrees = 50;
+    //   for (let i = 0; i < numTrees; i++) {
+    //     if (i === 23 || i === 32 || i === 36 || i === 6) {
+    //       const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //       gameObject.addComponent(Obstacle, models["tree"]);
+    //       gameObject.transform.position.x =
+    //         Math.cos(i * (Math.PI / 24)) * radius;
+    //       gameObject.transform.position.z =
+    //         Math.sin(i * (Math.PI / 24)) * radius;
+    //     }
+    //   }
+    // }
+
+    // {
+    //   const radius = 155;
+    //   let numTrees = 50;
+    //   for (let i = 0; i < numTrees; i++) {
+    //     if (!(i > 23 && i < 26)) {
+    //       const gameObject = gameObjectManager.createGameObject(scene, "tree");
+    //       gameObject.addComponent(Tree, models["tree"]);
+    //       gameObject.transform.position.x =
+    //         Math.cos(i * (Math.PI / 24)) * radius;
+    //       gameObject.transform.position.z =
+    //         Math.sin(i * (Math.PI / 24)) * radius;
+    //     }
+    //   }
+    // }
+
+    // {
+    //   const ducks = ["duck", "duck", "duck"];
+    //   ducks.forEach((name, ndx) => {
+    //     globals.duckCount++;
+    //     const gameObject = gameObjectManager.createGameObject(scene, name);
+    //     gameObject.addComponent(Duck);
+    //     gameObject.transform.position.x = -130 - ndx * 7;
+    //     gameObject.transform.position.y = 0;
+    //   });
+    //   globals.originalCount = globals.duckCount;
+    // }
+
+    // const animalModelNames = ["zebra", "horse", "phoenix"];
   }
 
   // loading obj trees
@@ -360,54 +367,54 @@ function main() {
   //   );
   // }
 
-  {
-    const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl("resources/models/pond/flower2.mtl", null, materials => {
-      objLoader.setMaterials(materials);
-      objLoader.load("resources/models/pond/flower2.obj", event => {
-        const root = event.detail.loaderRootNode;
-        scene.add(root);
-      });
-    });
-  }
+  // {
+  //   const objLoader = new THREE.OBJLoader2();
+  //   objLoader.loadMtl("resources/models/pond/flower2.mtl", null, materials => {
+  //     objLoader.setMaterials(materials);
+  //     objLoader.load("resources/models/pond/flower2.obj", event => {
+  //       const root = event.detail.loaderRootNode;
+  //       scene.add(root);
+  //     });
+  //   });
+  // }
 
-  {
-    const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl("resources/models/pond/pond4.mtl", null, materials => {
-      objLoader.setMaterials(materials);
-      objLoader.load("resources/models/pond/pond4.obj", event => {
-        const root = event.detail.loaderRootNode;
-        scene.add(root);
-      });
-    });
-  }
+  // {
+  //   const objLoader = new THREE.OBJLoader2();
+  //   objLoader.loadMtl("resources/models/pond/pond4.mtl", null, materials => {
+  //     objLoader.setMaterials(materials);
+  //     objLoader.load("resources/models/pond/pond4.obj", event => {
+  //       const root = event.detail.loaderRootNode;
+  //       scene.add(root);
+  //     });
+  //   });
+  // }
 
-  {
-    const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl("resources/models/pond/floor2.mtl", null, materials => {
-      objLoader.setMaterials(materials);
-      objLoader.load("resources/models/pond/floor2.obj", event => {
-        const root = event.detail.loaderRootNode;
-        scene.add(root);
-      });
-    });
-  }
+  // {
+  //   const objLoader = new THREE.OBJLoader2();
+  //   objLoader.loadMtl("resources/models/pond/floor2.mtl", null, materials => {
+  //     objLoader.setMaterials(materials);
+  //     objLoader.load("resources/models/pond/floor2.obj", event => {
+  //       const root = event.detail.loaderRootNode;
+  //       scene.add(root);
+  //     });
+  //   });
+  // }
 
-  {
-    const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl(
-      "resources/models/pond/floorOutside2.mtl",
-      null,
-      materials => {
-        objLoader.setMaterials(materials);
-        objLoader.load("resources/models/pond/floorOutside2.obj", event => {
-          const root = event.detail.loaderRootNode;
+  // {
+  //   const objLoader = new THREE.OBJLoader2();
+  //   objLoader.loadMtl(
+  //     "resources/models/pond/floorOutside2.mtl",
+  //     null,
+  //     materials => {
+  //       objLoader.setMaterials(materials);
+  //       objLoader.load("resources/models/pond/floorOutside2.obj", event => {
+  //         const root = event.detail.loaderRootNode;
 
-          scene.add(root);
-        });
-      }
-    );
-  }
+  //         scene.add(root);
+  //       });
+  //     }
+  //   );
+  // }
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;

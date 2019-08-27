@@ -16,38 +16,38 @@ class Animal extends Component {
     const hitRadius = model.size / 2;
     const skinInstance = gameObject.addComponent(SkinInstance, model);
     skinInstance.mixer.timeScale = globals.moveSpeed / 4;
-    const transform = gameObject.transform;
-    const playerTransform = globals.player.gameObject.transform;
+    // const transform = gameObject.transform;
+    // const playerTransform = globals.player.gameObject.transform;
 
-    this.fsm = new FiniteStateMachine(
-      {
-        idle: {
-          enter: () => {
-            skinInstance.setAnimation('Idle');
-          },
-          update: () => {
-            // check if player is near
-            if (
-              isClose(
-                transform,
-                hitRadius,
-                playerTransform,
-                globals.playerRadius
-              ) &&
-              lose.style.display === 'none'
-            ) {
-              // display win screen
-              blocker.style.display = 'block';
-              win.style.display = 'block';
-            }
-          },
-        },
-      },
-      'idle'
-    );
+    // this.fsm = new FiniteStateMachine(
+    //   {
+    //     idle: {
+    //       enter: () => {
+    //         skinInstance.setAnimation('Idle');
+    //       },
+    //       update: () => {
+    //         // check if player is near
+    //         if (
+    //           isClose(
+    //             transform,
+    //             hitRadius,
+    //             playerTransform,
+    //             globals.playerRadius
+    //           ) &&
+    //           lose.style.display === 'none'
+    //         ) {
+    //           // display win screen
+    //           blocker.style.display = 'block';
+    //           win.style.display = 'block';
+    //         }
+    //       },
+    //     },
+    //   },
+    //   'idle'
+    // );
   }
   update() {
-    this.fsm.update();
-    const dir = THREE.Math.radToDeg(this.gameObject.transform.rotation.y);
+    // this.fsm.update();
+    // const dir = THREE.Math.radToDeg(this.gameObject.transform.rotation.y);
   }
 }

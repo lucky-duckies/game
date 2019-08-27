@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)https://threejsfundamentals.org/threejs/threejs-game-conga-line.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Three.js - Game</title>
+    <link rel="icon" href="resources/images/duckylogo.png">
+    <link rel="stylesheet" href="styletest.css" />
+  </head>
+  <body>
+    <div id="blocker">
+      <div id="win">
+        <br /><br /><br /><br /><br /><br />
+        <span style="font-size:36px">YOU WIN</span>
+      </div>
+      <div id="lose">
+        <br /><br /><br /><br /><br /><br />
+        <span style="font-size:36px">YOU LOSE</span>
+      </div>
+
+    </div>
+    </div>
+    <div id='score'>
+    </div>
+    <canvas id="c" tabindex="1" width="1280" height="597"></canvas>
+
+    <div id="loading" >
+      <div id="instructionScreen">
+        <h1>Lucky Duckies</h1>
+        <div id="instructionContent">
+          <p id="nav">Guide the duckies through the maze to their home! <br><br>
+          Navigate with <img src="resources/images/arrowkeys.png" width="150" height="100"></p>
+         <img src="resources/images/duckylogo.png">
+       </div>
+      </div>
+      <div id="loadContainer">
+      <div id="loadStatus">
+        <div>...nearly ready...</div>
+        <div class="progress">
+          <div id="progressbar" style="width: 100%;"></div>
+        </div>
+      </div>
+      <div id="loaded" style="display: none;">
+        <div>Ready to... </div>
+        <button id="startBtn">Begin!</button>
+    </div>
+  </div>
+    </div>
+
+    <div id="labels"></div>
+
+    <script src="CollisionDetection_files/three.min.js"></script>
+    <script src="CollisionDetection_files/OrbitControls.js"></script>
+    <script src="CollisionDetection_files/GLTFLoader.js"></script>
+    <script src="CollisionDetection_files/LoaderSupport.js"></script>
+    <script src="CollisionDetection_files/OBJLoader2.js"></script>
+    <script src="CollisionDetection_files/MTLLoader.js"></script>
+    <script src="CollisionDetection_files/SkeletonUtils.js"></script>
+    <script src="utilities/globals.js"></script>
+    <script src="utilities/models.js"></script>
+    <script src="utilities/input.js"></script>
+    <script src="utilities/safeArray.js"></script>
+    <script src="gameLogic/gameObject.js"></script>
+    <script src="gameLogic/gameObjectManager.js"></script>
+    <script src="gameObjects/component.js"></script>
+    <script src="utilities/cameraInfo.js"></script>
+    <script src="gameLogic/finiteStateMachine.js"></script>
+    <script src="gameObjects/helper/skinInstance.js"></script>
+    <script src="gameObjects/players/player.js"></script>
+    <script src="gameObjects/obstacles/venus.js"></script>
+    <script src="gameObjects/obstacles/spider.js"></script>
+    <script src="gameObjects/obstacles/mushroom.js"></script>
+    <script src="gameObjects/players/duck.js"></script>
+    <script src="gameObjects/obstacles/animal.js"></script>
+    <script src="gameObjects/obstacles/obstacle.js"></script>
+    <script src="gameObjects/tree/tree.js"></script>
+    <script src="gameObjects/fireball/fireball.js"></script>
+    <script src="gameObjects/fireball/fire.js"></script>
+    <script src="raycasting.js"></script>
+
+  </body>
+</html>
