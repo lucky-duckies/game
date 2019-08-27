@@ -97,8 +97,10 @@ class Duck extends Component {
     if (!this.isCaught) {
       const { deltaTime, moveSpeed } = globals;
       const { transform } = this.gameObject;
-      transform.position.x = globals.player.gameObject.transform.position.x;
-      transform.position.z = globals.player.gameObject.transform.position.z;
+      // transform.position.x = globals.player.gameObject.transform.position.x;
+      transform.position.z = globals.player.gameObject.transform.position.z ;
+      transform.position.x = globals.player.gameObject.transform.position.x - this.gameObject.congaNdx * 7;
+      // transform.position.y = globals.player.gameObject.transform.position.z;
     }
   }
 }

@@ -327,7 +327,7 @@ function main() {
       const ducks = ["duck", "duck", "duck"];
       ducks.forEach((name, ndx) => {
         globals.duckCount++;
-        const gameObject = gameObjectManager.createGameObject(scene, name);
+        const gameObject = gameObjectManager.createGameObject(scene, name, ndx+1);
         gameObject.addComponent(Duck);
         gameObject.transform.position.x = -130 - ndx * 7;
         gameObject.transform.position.y = 0;
