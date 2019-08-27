@@ -194,8 +194,8 @@ function main() {
     //below: adding 3D models to environment
 
     {
-      const gameObject = gameObjectManager.createGameObject(scene, "zebra");
-      globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
+      const gameObject = gameObjectManager.createGameObject(scene, "mama");
+      globals.zebra = gameObject.addComponent(Mama, models["mama"]);
       gameObject.transform.position.x = 7;
       gameObject.transform.position.y = 2;
       gameObject.transform.position.z = 2;
@@ -211,8 +211,15 @@ function main() {
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
       globals.venus = gameObject.addComponent(Venus, models["venus"]);
-      gameObject.transform.position.x = 25;
-      gameObject.transform.position.z = -85;
+      gameObject.transform.position.x = 70;
+      gameObject.transform.position.z = 120;
+      globals.obstacles.push(globals.venus);
+    }
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "venus");
+      globals.venus = gameObject.addComponent(Venus, models["venus"]);
+      gameObject.transform.position.x = -115;
+      gameObject.transform.position.z = 50;
       globals.obstacles.push(globals.venus);
     }
     {
