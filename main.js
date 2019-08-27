@@ -179,7 +179,8 @@ function main() {
     obstacles: [],
     environment: [],
     fireballs: [],
-    trees: []
+    trees: [],
+    congaLine: []
   };
   gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -340,25 +341,7 @@ function main() {
       gameObject.transform.position.y = 2;
       gameObject.transform.position.z = 2;
     }
-    const animalModelNames = ["zebra", "horse", "phoenix"];
   }
-
-  // loading obj trees
-  // {
-  //   const objLoader = new THREE.OBJLoader2();
-  //   objLoader.loadMtl(
-  //     "resources/models/windmill/tree3.mtl",
-  //     null,
-  //     materials => {
-  //       objLoader.setMaterials(materials);
-  //       objLoader.load("resources/models/windmill/tree3.obj", event => {
-  //         const root = event.detail.loaderRootNode;
-  //         scene.add(root);
-  //       });
-  //     }
-  //   );
-  // }
-
   {
     const objLoader = new THREE.OBJLoader2();
     objLoader.loadMtl("resources/models/pond/flower2.mtl", null, materials => {

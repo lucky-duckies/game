@@ -20,7 +20,6 @@ class Duck extends Component {
 
     const transform = gameObject.transform;
     const obstacles = globals.obstacles;
-
     const hitRadius = model.size / 2;
 
     this.collidingWithTree = false;
@@ -71,6 +70,7 @@ class Duck extends Component {
     );
   }
   update() {
+    //retrieves numbers of present and lost ducks from global variables and renders living/lost icons accordingly
     let duckDisplay = () => {
       let displayHTML = "";
       for (let count = 0; count < globals.duckCount; count++) {

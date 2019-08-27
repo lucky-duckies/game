@@ -5,8 +5,9 @@ function removeArrayElement(array, element) {
   }
 }
 class GameObject {
-  constructor(parent, name) {
+  constructor(parent, name, congaNdx = null) {
     this.name = name;
+    this.congaNdx = congaNdx;
     this.components = [];
     this.transform = new THREE.Object3D();
     parent.add(this.transform);
