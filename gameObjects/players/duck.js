@@ -99,9 +99,9 @@ class Duck extends Component {
 
       //gets direction of the main player and follows behind at that orientation
       let direction = globals.player.gameObject.components[1].direction;
-      let leader = globals.congaLine[this.gameObject.congaNdx-1];
-      transform.position.z = leader.transform.position.z - (direction.z * 10);
-      transform.position.x = leader.transform.position.x - (direction.x * 10);
+      let leader = globals.congaLine[0];
+      transform.position.z = leader.transform.position.z - (direction.z * (10 * this.gameObject.congaNdx));
+      transform.position.x = leader.transform.position.x - (direction.x * (10 * this.gameObject.congaNdx));
       transform.rotation.y = leader.transform.rotation.y;
     }
   }
