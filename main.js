@@ -194,13 +194,6 @@ function main() {
     //below: adding 3D models to environment
 
     {
-      const gameObject = gameObjectManager.createGameObject(scene, "mama");
-      globals.zebra = gameObject.addComponent(Mama, models["mama"]);
-      gameObject.transform.position.x = 7;
-      gameObject.transform.position.y = 2;
-      gameObject.transform.position.z = 2;
-    }
-    {
       const gameObject = gameObjectManager.createGameObject(scene, "horse");
       globals.horse = gameObject.addComponent(Obstacle, models["horse"]);
       gameObject.transform.position.x = 25;
@@ -340,7 +333,13 @@ function main() {
       });
       globals.originalCount = globals.duckCount;
     }
-
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "mama");
+      globals.zebra = gameObject.addComponent(Mama, models["mama"]);
+      gameObject.transform.position.x = 7;
+      gameObject.transform.position.y = 2;
+      gameObject.transform.position.z = 2;
+    }
     const animalModelNames = ["zebra", "horse", "phoenix"];
   }
 
