@@ -98,8 +98,8 @@ class Player extends Component {
     // the following code gets the direction vector that our bird is facing
     const matrix = new THREE.Matrix4();
     matrix.extractRotation(transform.matrix);
-
     direction.applyMatrix4(matrix);
+    this.direction = direction;
 
     // camera follows behind player at (position, going speed (between 0 and 1))
     globals.camera.position.lerp(

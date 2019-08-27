@@ -95,14 +95,14 @@ class Duck extends Component {
     this.fsm.update();
 
     if (!this.isCaught) {
-      const { deltaTime, moveSpeed } = globals;
       const { transform } = this.gameObject;
-      // transform.position.x = globals.player.gameObject.transform.position.x;
 
-      transform.position.z = globals.player.gameObject.transform.position.z ;
-      transform.position.x = globals.player.gameObject.transform.position.x - this.gameObject.congaNdx * 7;
-      transform.rotation.y = globals.player.gameObject.transform.rotation.y
-      // transform.position.y = globals.player.gameObject.transform.position.z;
+      //gets direction of the main player and follows behind at that orientation
+      let direction = globals.player.gameObject.components[1].direction;
+      let leader = globals.congaLine[this.gameObject.congaNdx-1];
+      transform.position.z = leader.transform.position.z - (direction.z * 10);
+      transform.position.x = leader.transform.position.x - (direction.x * 10);
+      transform.rotation.y = leader.transform.rotation.y;
     }
   }
 }
