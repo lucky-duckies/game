@@ -76,13 +76,13 @@ class Player extends Component {
 
     // rotate 10 degrees on right arrow key press
     if (inputManager.keys.right.down) {
-      transform.rotation.y -= Math.PI / 36;
+      transform.rotation.y -= Math.PI / 72;
     }
 
     // rotate 10 degrees on left arrow key press
     if (inputManager.keys.left.down) {
       // rotates 10 degrees
-      transform.rotation.y += Math.PI / 36;
+      transform.rotation.y += Math.PI / 72;
     }
 
     // move in direction of head by one unit
@@ -106,16 +106,16 @@ class Player extends Component {
       {
         //direction accounts for players rotation
         x: this.gameObject.transform.position.x - direction.x * 40,
-        y: this.gameObject.transform.position.y + 45,
+        y: this.gameObject.transform.position.y + 50,
         z: this.gameObject.transform.position.z - direction.z * 40
       },
       1
     );
     //camera is always facing the same direction as the player
     globals.camera.lookAt(
-      this.gameObject.transform.position.x + direction.x + 10,
+      this.gameObject.transform.position.x + direction.x * 20,
       this.gameObject.transform.position.y,
-      this.gameObject.transform.position.z + direction.z
+      this.gameObject.transform.position.z + direction.z * 20
     );
 
     //first person view
