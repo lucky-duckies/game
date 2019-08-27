@@ -335,7 +335,6 @@ function main() {
         globals.congaLine.push(gameObject);
       });
       globals.originalCount = globals.duckCount;
-      console.log(globals.congaLine)
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mama");
