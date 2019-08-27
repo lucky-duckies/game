@@ -7,6 +7,7 @@ let globals = {
   deltaTime: 0,
   player: null,
   zebra: null,
+  mama: null,
   horse: null,
   duckCount: 0,
   originalCount: 0,

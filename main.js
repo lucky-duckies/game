@@ -197,12 +197,21 @@ function main() {
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
     }
+    // {
+    //   const gameObject = gameObjectManager.createGameObject(scene, "zebra");
+    //   globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
+    //   gameObject.transform.position.x = 7;
+    //   gameObject.transform.position.y = 2;
+    //   gameObject.transform.position.z = 2;
+    // }
+
     {
-      const gameObject = gameObjectManager.createGameObject(scene, "zebra");
-      globals.zebra = gameObject.addComponent(Animal, models["zebra"]);
+      const gameObject = gameObjectManager.createGameObject(scene, "mama");
+      globals.zebra = gameObject.addComponent(Mama, models["mama"]);
       gameObject.transform.position.x = 7;
       gameObject.transform.position.y = 2;
       gameObject.transform.position.z = 2;
+
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "horse");
