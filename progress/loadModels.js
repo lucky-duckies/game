@@ -137,7 +137,7 @@ function main() {
       // an AnimationAction references an AnimationClip
       const mixer = new THREE.AnimationMixer(clonedScene);
       const firstClip = Object.values(model.animations)[0]; // getting the first animation clip
-      const action = mixer.clipAction(firstClip); // turning the first animation clip into an action
+      const action = mixer.clipAction(firstClip); // turning the first animation clip into an action now
       action.play();
       mixers.push(mixer); // store mixer in mixers array --> we need this for when we update each mixer in our render loop
     });
