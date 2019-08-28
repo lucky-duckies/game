@@ -131,10 +131,21 @@ function main() {
     //a quick screen render
     init();
 
+    // const instructions = document.querySelector("#loading");
+    // if(inputManager.keys.enter.down){
+    //         //hide instructions screen
+    //         instructions.style.display = "none";
+    //         //hide falling duckies and stars
+    //         const animatedBanner = document.querySelector(".banner");
+    //         animatedBanner.style.display = "none";
+    // }
+
     document.getElementById("startBtn").onclick = function() {
       //hide instructions screen
-      const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
+      //hide falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.display = "none";
     };
   };
 
