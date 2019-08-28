@@ -13,8 +13,8 @@ const win = document.getElementById("win");
 const lose = document.getElementById("lose");
 const help = document.querySelector("#help");
 
-blocker.style.display = "none";
-win.style.display = "none";
+// blocker.style.display = "none";
+// win.style.display = "none";
 lose.style.display = "none";
 
 let floorOn = true;
