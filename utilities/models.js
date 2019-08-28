@@ -5,6 +5,7 @@ const models = {
   phoenix: { url: "resources/models/animals/scene.gltf" },
   duck: { url: "resources/models/duck/scene.gltf" },
   venus: { url: "resources/models/venus_flytrap/plant.gltf" },
+  ant: { url: "resources/models/ant/ant2.gltf" },
   spider: { url: "resources/models/spider/scene.gltf" },
   mushroom: { url: "resources/models/mushroom/mushroom.gltf" },
   tree: { url: "resources/models/trees/test.gltf" },

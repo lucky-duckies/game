@@ -11,6 +11,7 @@ let globals = {
   duckCount: 0,
   originalCount: 0,
   venus: null,
+  ant: null,
   spider: null,
   mushroom: null,
   obstacles: [],

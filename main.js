@@ -149,11 +149,11 @@ function main() {
       instructions.style.display = "none";
       //hide start button
       const startPrompt = document.querySelector("#loaded");
-      startPrompt.style.display = "none";      
+      startPrompt.style.display = "none";
       //hide falling duckies and stars
       animatedBanner.style.display = "none";
       //show help button
-      help.style.display = "block";   
+      help.style.display = "block";
     };
   };
 
@@ -236,7 +236,14 @@ function main() {
       globals.cameraInfo = gameObject.addComponent(CameraInfo);
     }
     //below: adding 3D models to environment
+    {
+      const gameObject = gameObjectManager.createGameObject(scene, "ant");
+      globals.ant = gameObject.addComponent(Ant, models["ant"]);
+      gameObject.transform.position.x = 40;
+      gameObject.transform.position.z = -65;
+      globals.obstacles.push(globals.ant);
 
+    }
 
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
