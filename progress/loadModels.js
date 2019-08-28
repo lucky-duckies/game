@@ -92,7 +92,8 @@ function main() {
     horse: { url: "resources/models/animals/Horse.gltf" },
     knight: { url: "resources/models/knight/KnightCharacter.gltf" },
     phoenix: { url: "../resources/models/animals/scene.gltf" },
-    fire: { url: "../resources/models/fire/fire.gltf" }
+    fire: { url: "../resources/models/fire/fire.gltf" },
+    butterfly: { url: "../resources/models/butterfly/scene.gltf" }
   };
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
