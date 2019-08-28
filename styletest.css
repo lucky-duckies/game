@@ -10,29 +10,25 @@ html {
 }
 #win {
   display: none;
-
   width: 100%;
   height: 100%;
-
   color: #ffffff;
   text-align: center;
-  font-family: Arial;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 14px;
   line-height: 24px;
 }
-.life{
+.icon{
   width: 64px;
   height: 64px;
 }
 #lose {
   display: none;
-
   width: 100%;
   height: 100%;
-
   color: #ff0000;
   text-align: center;
-  font-family: Arial;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 14px;
   line-height: 24px;
 }
