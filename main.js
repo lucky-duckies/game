@@ -4,9 +4,9 @@
 "use strict";
 
 /* global THREE, dat */
-var vertex = new THREE.Vector3();
-var color = new THREE.Color();
-var listener = new THREE.AudioListener();
+const vertex = new THREE.Vector3();
+const color = new THREE.Color();
+const listener = new THREE.AudioListener();
 
 const blocker = document.getElementById("blocker");
 const win = document.getElementById("win");
@@ -21,6 +21,7 @@ win.style.display = "none";
 lose.style.display = "none";
 
 let floorOn = true;
+let skyOn = true;
 
 function main() {
   const canvas = document.querySelector("#c");
@@ -35,9 +36,9 @@ function main() {
   // adding background music to the game
   // camera.add(listener);
   // // create a global audio source
-  // var sound = new THREE.Audio(listener);
+  // const sound = new THREE.Audio(listener);
 
-  // var audioLoader = new THREE.AudioLoader();
+  // const audioLoader = new THREE.AudioLoader();
   // audioLoader.load("resources/music/Horror Stories.ogg", function(buffer) {
   //   sound.setBuffer(buffer);
   //   sound.setLoop(true);
@@ -64,16 +65,59 @@ function main() {
   addLight(50, 4000, 20);
   addLight(-50, 4000, 50);
 
+  // sky
+  if (skyOn){
+    const sky = new Sky();
+    sky.scale.setScalar( 45000 );
+    scene.add(sky);
+
+    let sunSphere = new THREE.Mesh(
+      new THREE.SphereBufferGeometry( 20000, 16, 8 ),
+      new THREE.MeshBasicMaterial( { color: 0xffffff } )
+    );
+    sunSphere.position.y = - 700000;
+    sunSphere.visible = false;
+    scene.add( sunSphere );
+
+    const defaultSkyVals = {
+      turbidity: 10,
+      rayleigh: 2,
+      mieCoefficient: 0.010,
+      mieDirectionalG: 0.72,
+      luminance: 1,
+      inclination: 0.49, // elevation / inclination
+      azimuth: 0.37, // Facing front,
+      sun: ! true
+    };
+
+    const distance = 400;
+
+    const uniforms = sky.material.uniforms;
+    uniforms[ "turbidity" ].value = defaultSkyVals.turbidity;
+    uniforms[ "rayleigh" ].value = defaultSkyVals.rayleigh;
+    uniforms[ "mieCoefficient" ].value = defaultSkyVals.mieCoefficient;
+    uniforms[ "mieDirectionalG" ].value = defaultSkyVals.mieDirectionalG;
+    uniforms[ "luminance" ].value = defaultSkyVals.luminance;
+    
+    const theta = Math.PI * ( defaultSkyVals.inclination - 0.5 );
+    const phi = 2 * Math.PI * ( defaultSkyVals.azimuth - 0.5 );
+    sunSphere.position.x = distance * Math.cos( phi );
+    sunSphere.position.y = distance * Math.sin( phi ) * Math.sin( theta );
+    sunSphere.position.z = distance * Math.sin( phi ) * Math.cos( theta );
+    sunSphere.visible = defaultSkyVals.sun;
+    uniforms[ "sunPosition" ].value.copy( sunSphere.position );
+  }
+
   // floor
   if (floorOn) {
-    var floorGeometry = new THREE.PlaneBufferGeometry(2000, 2000, 100, 100);
+    let floorGeometry = new THREE.PlaneBufferGeometry(2000, 2000, 100, 100);
     floorGeometry.rotateX(-Math.PI / 2);
 
     // vertex displacement
 
-    var position = floorGeometry.attributes.position;
+    let position = floorGeometry.attributes.position;
 
-    for (var i = 0, l = position.count; i < l; i++) {
+    for (let i = 0, l = position.count; i < l; i++) {
       vertex.fromBufferAttribute(position, i);
 
       vertex.x += Math.random() * 20 - 10;
@@ -86,9 +130,9 @@ function main() {
     floorGeometry = floorGeometry.toNonIndexed(); // ensure each face has unique vertices
 
     position = floorGeometry.attributes.position;
-    var colors = [];
+    const colors = [];
 
-    for (var i = 0, l = position.count; i < l; i++) {
+    for (let i = 0, l = position.count; i < l; i++) {
       color.setHSL(
         Math.random() * 0.3 + 0.23, // hue (color tone)
         0.38, // saturation
@@ -102,11 +146,11 @@ function main() {
       new THREE.Float32BufferAttribute(colors, 3)
     );
 
-    var floorMaterial = new THREE.MeshBasicMaterial({
+    const floorMaterial = new THREE.MeshBasicMaterial({
       vertexColors: THREE.VertexColors
     });
 
-    var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
     scene.add(floor);
   }
   // end floor
