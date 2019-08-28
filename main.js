@@ -173,7 +173,11 @@ function main() {
     }
   })
 
+  //nesting these under one query/class doesn't work for some reason
   document.getElementById("restartBtn").onclick = function() {
+    window.location.reload();
+  };
+  document.getElementById("replayBtn").onclick = function() {
     window.location.reload();
   };
 
