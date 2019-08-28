@@ -98,7 +98,7 @@ function main() {
     uniforms[ "mieCoefficient" ].value = defaultSkyVals.mieCoefficient;
     uniforms[ "mieDirectionalG" ].value = defaultSkyVals.mieDirectionalG;
     uniforms[ "luminance" ].value = defaultSkyVals.luminance;
-    
+
     const theta = Math.PI * ( defaultSkyVals.inclination - 0.5 );
     const phi = 2 * Math.PI * ( defaultSkyVals.azimuth - 0.5 );
     sunSphere.position.x = distance * Math.cos( phi );
@@ -280,13 +280,13 @@ function main() {
       globals.cameraInfo = gameObject.addComponent(CameraInfo);
     }
     //below: adding 3D models to environment
+
     {
       const gameObject = gameObjectManager.createGameObject(scene, "ant");
       globals.ant = gameObject.addComponent(Ant, models["ant"]);
       gameObject.transform.position.x = 40;
       gameObject.transform.position.z = -65;
       globals.obstacles.push(globals.ant);
-
     }
 
     {
