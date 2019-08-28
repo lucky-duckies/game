@@ -143,11 +143,33 @@ function main() {
       //hide instructions screen
       const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
+      //hide start button
+      const startPrompt = document.querySelector("#loaded");
+      startPrompt.style.display = "none";      
       //hide falling duckies and stars
       const animatedBanner = document.querySelector(".banner");
       animatedBanner.style.display = "none";
+      //show help button
+      const help = document.querySelector("#help");
+      help.style.display = "block";   
     };
   };
+
+  //help button toggles instructions
+  document.getElementById("help").addEventListener('click', (event)=>{
+    const instructions = document.querySelector("#loading");
+    if(instructions.style.display === "none"){
+      //show instructions screen
+      instructions.style.opacity = 0.8;
+      instructions.style.display = "flex";
+      //show falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.opacity = 0.8;
+      animatedBanner.style.display = "flex";
+    } else {
+      document.getElementById("startBtn").click();
+    }
+  })
 
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
