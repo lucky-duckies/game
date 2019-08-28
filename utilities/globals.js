@@ -18,7 +18,8 @@ let globals = {
   environment: [],
   fireballs: [],
   trees: [],
-  congaLine: []
+  congaLine: [],
+  ducks: []
 };
 
 let inputManager = null;

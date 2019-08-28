@@ -180,7 +180,8 @@ function main() {
     environment: [],
     fireballs: [],
     trees: [],
-    congaLine: []
+    congaLine: [],
+    ducks: []
   };
   gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -328,14 +329,16 @@ function main() {
       const ducks = ["duck", "duck", "duck"];
       ducks.forEach((name, ndx) => {
         globals.duckCount++;
-        const gameObject = gameObjectManager.createGameObject(scene, name, ndx+1);
-        gameObject.addComponent(Duck);
+        const gameObject = gameObjectManager.createGameObject(
+          scene,
+          name,
+          ndx + 1
+        );
+        globals.ducks.push(gameObject.addComponent(Duck));
         gameObject.transform.position.x = -130 - ndx * 7;
-        gameObject.transform.position.y = 0;
-        globals.congaLine.push(gameObject);
+        gameObject.transform.position.y = 5;
       });
       globals.originalCount = globals.duckCount;
-      console.log(globals.congaLine)
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mama");
