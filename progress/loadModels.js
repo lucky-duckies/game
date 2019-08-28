@@ -91,7 +91,7 @@ function main() {
     zebra: { url: "resources/models/animals/Zebra.gltf" },
     horse: { url: "resources/models/animals/Horse.gltf" },
     knight: { url: "resources/models/knight/KnightCharacter.gltf" },
-    phoenix: { url: "resources/models/animals/scene.gltf" },
+    phoenix: { url: "../resources/models/animals/scene.gltf" },
     fire: { url: "../resources/models/fire/fire.gltf" }
   };
   {
