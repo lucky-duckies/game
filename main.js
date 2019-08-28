@@ -8,14 +8,15 @@ var vertex = new THREE.Vector3();
 var color = new THREE.Color();
 var listener = new THREE.AudioListener();
 
-var blocker = document.getElementById("blocker");
-
-var win = document.getElementById("win");
+const blocker = document.getElementById("blocker");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
+const help = document.querySelector("#help");
 
 blocker.style.display = "none";
-
 win.style.display = "none";
 lose.style.display = "none";
+
 let floorOn = true;
 
 function main() {
@@ -131,11 +132,47 @@ function main() {
     //a quick screen render
     init();
 
+    //game starts if user presses enter
+    document.addEventListener("keyup", event => {
+      event.preventDefault();
+      if(event.keyCode === 13 || event.keyCode === 36){
+        document.getElementById("startBtn").click();
+      }
+    })
+
     document.getElementById("startBtn").onclick = function() {
       //hide instructions screen
       const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
+      //hide start button
+      const startPrompt = document.querySelector("#loaded");
+      startPrompt.style.display = "none";      
+      //hide falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.display = "none";
+      //show help button
+      help.style.display = "block";   
     };
+  };
+
+  //help button toggles instructions
+  document.getElementById("help").addEventListener('click', (event)=>{
+    const instructions = document.querySelector("#loading");
+    if(instructions.style.display === "none"){
+      //show instructions screen
+      instructions.style.opacity = 0.8;
+      instructions.style.display = "flex";
+      //show falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.opacity = 0.8;
+      animatedBanner.style.display = "flex";
+    } else {
+      document.getElementById("startBtn").click();
+    }
+  })
+
+  document.getElementById("restartBtn").onclick = function() {
+    window.location.reload();
   };
 
   {

@@ -78,6 +78,7 @@ class Duck extends Component {
             }
             //display lose screen
             if (globals.duckCount === 0 && win.style.display === "none") {
+              help.style.display = "none";
               blocker.style.display = "block";
               lose.style.display = "block";
             }
@@ -156,7 +157,7 @@ class Duck extends Component {
     let duckDisplay = () => {
       let displayHTML = "";
       for (let count = 0; count < globals.duckCount; count++) {
-        displayHTML += `<img class=life src="../../resources/images/duckicon.png"/>`;
+        displayHTML += `<img class=icon src="../../resources/images/duckicon.png"/>`;
       }
       if (globals.duckCount < globals.originalCount) {
         for (
@@ -164,7 +165,7 @@ class Duck extends Component {
           lostDucks < globals.originalCount - globals.duckCount;
           lostDucks++
         ) {
-          displayHTML += `<img class=life src="../../resources/images/lostduck.png"/>`;
+          displayHTML += `<img class=icon src="../../resources/images/lostduck.png"/>`;
         }
       }
       return displayHTML;
