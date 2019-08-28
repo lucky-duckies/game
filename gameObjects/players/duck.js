@@ -13,14 +13,14 @@ function sound(src) {
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
   document.body.appendChild(this.sound);
-  this.play = function(){
-      this.sound.play();
-  }
-  this.stop = function(){
-      this.sound.pause();
-  }    
+  this.play = function() {
+    this.sound.play();
+  };
+  this.stop = function() {
+    this.sound.pause();
+  };
 }
-let duckLostSound = new sound("../../resources/music/quack.ogg")
+let duckLostSound = new sound("../../resources/music/quack.ogg");
 
 class Duck extends Component {
   constructor(gameObject) {
@@ -214,7 +214,7 @@ class Duck extends Component {
       // limit velocity so its not too fast
 
       this.velocity.normalize();
-      this.velocity.multiplyScalar(0.2);
+      this.velocity.multiplyScalar(0.5);
 
       this.position.add(this.velocity);
 
