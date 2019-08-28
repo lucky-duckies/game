@@ -33,17 +33,17 @@ function main() {
   let camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.set(0, 70, 40);
   // adding background music to the game
-  // camera.add(listener);
-  // // create a global audio source
-  // const sound = new THREE.Audio(listener);
+  camera.add(listener);
+  // create a global audio source
+  const sound = new THREE.Audio(listener);
 
-  // const audioLoader = new THREE.AudioLoader();
-  // audioLoader.load("resources/music/Horror Stories.ogg", function(buffer) {
-  //   sound.setBuffer(buffer);
-  //   sound.setLoop(true);
-  //   sound.setVolume(0.5);
-  //   sound.play();
-  // });
+  const audioLoader = new THREE.AudioLoader();
+  audioLoader.load("resources/music/Horror Stories.ogg", function(buffer) {
+    sound.setBuffer(buffer);
+    sound.setLoop(true);
+    sound.setVolume(0.5);
+    sound.play();
+  });
 
   const controls = new THREE.OrbitControls(camera, canvas);
   controls.enableKeys = false;
@@ -416,7 +416,7 @@ function main() {
       gameObject.transform.position.y = 5;
     }
     {
-      const ducks = ["duck", "duck", "duck"];
+      const ducks = ["duck", "duck", "duck", "duck", "duck"];
       ducks.forEach((name, ndx) => {
         globals.duckCount++;
         const gameObject = gameObjectManager.createGameObject(
