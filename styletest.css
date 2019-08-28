@@ -326,6 +326,17 @@ canvas {
 
 #score {
   position: absolute;
+  left: 5px;
+  top: 5px;
   color: white;
   font-size: large;
+}
+
+#help {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
 }
