@@ -5,6 +5,22 @@ function isClose(obj1, obj1Radius, obj2, obj2Radius) {
   const dist = obj1.position.distanceTo(obj2.position);
   return dist < minDist;
 }
+// adding sound effect when duck is lost
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+      this.sound.play();
+  }
+  this.stop = function(){
+      this.sound.pause();
+  }    
+}
+let duckLostSound = new sound("../../resources/music/quack.ogg")
 
 class Duck extends Component {
   constructor(gameObject) {
@@ -73,6 +89,7 @@ class Duck extends Component {
                 if (this.isCaught && this.uncaught) {
                   this.uncaught = false;
                   globals.duckCount--;
+                  duckLostSound.play();
                 }
               }
             }
