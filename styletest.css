@@ -148,6 +148,8 @@ canvas {
   top: 0;
   width: 100%;
   height: 100%;
+  background: transparent;
+  pointer-events: none;
 }
 .banner div{
   position: absolute;
@@ -156,26 +158,31 @@ canvas {
 .banner div:nth-child(1){
   left:25%;
   animation: animate 15s linear infinite;
+  animation-delay: -5s;
 }
 .banner div:nth-child(2){
   left:90%;
   animation: animate 9s linear infinite;
+  animation-delay: -8s;
 }
 .banner div:nth-child(3){
   left:45%;
   animation: animate 20s linear infinite;
+
 }
 .banner div:nth-child(4){
   left:0%;
-  animation: animate 7s linear infinite;
+  animation: animate 11s linear infinite;
+  animation-delay: -3s;
 }
 .banner div:nth-child(5){
   left:70%;
-  animation: animate 25s linear infinite;
+  animation: animate 18s linear infinite;
 }
 .banner div:nth-child(6){
   left:10%;
   animation: animate 8s linear infinite;
+  animation-delay: -6s;
 }
 .banner div:nth-child(7){
   left:55%;
@@ -184,26 +191,31 @@ canvas {
 .banner div:nth-child(8){
   left:15%;
   animation: animate 19s linear infinite;
+  animation-delay: -2s;
 }
 .banner div:nth-child(9){
   left:95%;
-  animation: animate 7s linear infinite;
+  animation: animate 10s linear infinite;
 }
 .banner div:nth-child(10){
   left:35%;
   animation: animate 12s linear infinite;
+  animation-delay: -8s;
 }
 .banner div:nth-child(11){
   left:65%;
   animation: animate 11s linear infinite;
+  animation-delay: -6s;
 }
 .banner div:nth-child(12){
   left:50%;
   animation: animate 9s linear infinite;
+  animation-delay: -6s;
 }
 .banner div:nth-child(13){
   left:85%;
   animation: animate 11s linear infinite;
+  animation-delay: -3s;
 }
 .banner div:nth-child(14){
   left:40%;
@@ -212,18 +224,34 @@ canvas {
 .banner div:nth-child(15){
   left:60%;
   animation: animate 13s linear infinite;
+  animation-delay: -1s;
 }
 .banner div:nth-child(16){
   left:30%;
-  animation: animate 8s linear infinite;
+  animation: animate 9s linear infinite;
+  animation-delay: -4s;
 }
 .banner div:nth-child(17){
   left:75%;
   animation: animate 10s linear infinite;
+  animation-delay: -9s;
 }
 @keyframes animate{
   0%{
     top: -10%;
+    transform: translateX(20px) rotate(0deg)
+  }
+  20%{
+    transform: translateX(-20px) rotate(45deg)
+  }
+  40%{
+    transform: translateX(20px) rotate(90deg)
+  }
+  60%{
+    transform: translateX(-20px) rotate(135deg)
+  }
+  80%{
+    transform: translateX(20px) rotate(90deg)
   }
   100%{
     top: 110%;
