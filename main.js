@@ -15,7 +15,6 @@ const help = document.getElementById("help");
 const score = document.getElementById("score");
 const animatedBanner = document.querySelector(".banner");
 
-
 blocker.style.display = "none";
 win.style.display = "none";
 lose.style.display = "none";
@@ -138,10 +137,10 @@ function main() {
     //game starts if user presses enter
     document.addEventListener("keyup", event => {
       event.preventDefault();
-      if(event.keyCode === 13 || event.keyCode === 36){
+      if (event.keyCode === 13 || event.keyCode === 36) {
         document.getElementById("startBtn").click();
       }
-    })
+    });
 
     document.getElementById("startBtn").onclick = function() {
       //hide instructions screen
@@ -149,18 +148,18 @@ function main() {
       instructions.style.display = "none";
       //hide start button
       const startPrompt = document.querySelector("#loaded");
-      startPrompt.style.display = "none";      
+      startPrompt.style.display = "none";
       //hide falling duckies and stars
       animatedBanner.style.display = "none";
       //show help button
-      help.style.display = "block";   
+      help.style.display = "block";
     };
   };
 
   //help button toggles instructions
-  document.getElementById("help").addEventListener('click', (event)=>{
+  document.getElementById("help").addEventListener("click", event => {
     const instructions = document.querySelector("#loading");
-    if(instructions.style.display === "none"){
+    if (instructions.style.display === "none") {
       //show instructions screen
       instructions.style.opacity = 0.8;
       instructions.style.display = "flex";
@@ -171,7 +170,7 @@ function main() {
     } else {
       document.getElementById("startBtn").click();
     }
-  })
+  });
 
   //nesting these under one query/class doesn't work for some reason
   document.getElementById("restartBtn").onclick = function() {
@@ -237,25 +236,23 @@ function main() {
     }
     //below: adding 3D models to environment
 
-
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
-      globals.venus = gameObject.addComponent(Venus, models["venus"]);
+      globals.venus = gameObject.addComponent(Obstacle, models["venus"]);
       gameObject.transform.position.x = 70;
       gameObject.transform.position.z = 120;
       globals.obstacles.push(globals.venus);
-
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
-      globals.venus = gameObject.addComponent(Venus, models["venus"]);
+      globals.venus = gameObject.addComponent(Obstacle, models["venus"]);
       gameObject.transform.position.x = 25;
       gameObject.transform.position.z = -125;
       globals.obstacles.push(globals.venus);
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
-      globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
+      globals.mushroom = gameObject.addComponent(Obstacle, models["mushroom"]);
       gameObject.transform.position.x = -115;
       gameObject.transform.position.z = 50;
 
@@ -263,7 +260,7 @@ function main() {
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mushroom");
-      globals.mushroom = gameObject.addComponent(Mushroom, models["mushroom"]);
+      globals.mushroom = gameObject.addComponent(Obstacle, models["mushroom"]);
       gameObject.transform.position.x = -85;
       gameObject.transform.position.z = -85;
 
@@ -271,7 +268,7 @@ function main() {
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "spider");
-      globals.spider = gameObject.addComponent(Spider, models["spider"]);
+      globals.spider = gameObject.addComponent(Obstacle, models["spider"]);
       gameObject.transform.position.x = -20;
       gameObject.transform.position.z = -105;
 
@@ -300,7 +297,7 @@ function main() {
       for (let i = 0; i < numTrees; i++) {
         if (i === 1 || i === 8 || i === 18) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Obstacle, models["tree"]));
+          globals.trees.push(gameObject.addComponent(Tree, models["tree"]));
           gameObject.transform.position.x =
             Math.cos(i * (Math.PI / 12)) * radius;
           gameObject.transform.position.z =
@@ -339,7 +336,7 @@ function main() {
       for (let i = 0; i < numTrees; i++) {
         if (i === 23 || i === 32 || i === 36 || i === 6) {
           const gameObject = gameObjectManager.createGameObject(scene, "tree");
-          globals.trees.push(gameObject.addComponent(Obstacle, models["tree"]));
+          globals.trees.push(gameObject.addComponent(Tree, models["tree"]));
           gameObject.transform.position.x =
             Math.cos(i * (Math.PI / 24)) * radius;
           gameObject.transform.position.z =
