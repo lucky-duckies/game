@@ -8,14 +8,13 @@ var vertex = new THREE.Vector3();
 var color = new THREE.Color();
 var listener = new THREE.AudioListener();
 
-var blocker = document.getElementById("blocker");
+const blocker = document.getElementById("blocker");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
 
-var win = document.getElementById("win");
-
-blocker.style.display = "none";
-
+// blocker.style.display = "none";
 win.style.display = "none";
-lose.style.display = "none";
+
 let floorOn = true;
 
 function main() {
@@ -170,6 +169,10 @@ function main() {
       document.getElementById("startBtn").click();
     }
   })
+
+  document.getElementById("restartBtn").onclick = function() {
+    window.location.reload();
+  };
 
   {
     const gltfLoader = new THREE.GLTFLoader(manager);
