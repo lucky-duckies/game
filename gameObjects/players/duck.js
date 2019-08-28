@@ -60,6 +60,7 @@ class Duck extends Component {
             }
             //display lose screen
             if (globals.duckCount === 0 && win.style.display === "none") {
+              help.style.display = "none";
               blocker.style.display = "block";
               lose.style.display = "block";
             }

@@ -11,9 +11,11 @@ var listener = new THREE.AudioListener();
 const blocker = document.getElementById("blocker");
 const win = document.getElementById("win");
 const lose = document.getElementById("lose");
+const help = document.querySelector("#help");
 
-// blocker.style.display = "none";
+blocker.style.display = "none";
 win.style.display = "none";
+lose.style.display = "none";
 
 let floorOn = true;
 
@@ -149,7 +151,7 @@ function main() {
       const animatedBanner = document.querySelector(".banner");
       animatedBanner.style.display = "none";
       //show help button
-      const help = document.querySelector("#help");
+
       help.style.display = "block";   
     };
   };

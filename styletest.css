@@ -7,9 +7,7 @@ html {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* flex-direction: column;
-  justify-content: center; */
+  background-color: rgba(0, 0, 0, 0.75);
 }
 #win {
   display: none;
@@ -26,7 +24,7 @@ html {
   height: 64px;
 }
 #lose {
-  /* display: none; */
+  display: none;
   width: 100%;
   height: 100%;
   color: #ff0000;
@@ -84,7 +82,7 @@ canvas {
   flex-shrink: 0;
 }
 #loading {
-  display: none;
+  display: flex;
   position: absolute;
   left: 0;
   top: 0;
@@ -100,7 +98,7 @@ canvas {
   color: white;
 }
 .banner{
-  display: none;
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
