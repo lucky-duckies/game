@@ -8,14 +8,15 @@ var vertex = new THREE.Vector3();
 var color = new THREE.Color();
 var listener = new THREE.AudioListener();
 
-var blocker = document.getElementById("blocker");
-
-var win = document.getElementById("win");
+const blocker = document.getElementById("blocker");
+const win = document.getElementById("win");
+const lose = document.getElementById("lose");
+const help = document.querySelector("#help");
 
 blocker.style.display = "none";
-
 win.style.display = "none";
 lose.style.display = "none";
+
 let floorOn = true;
 
 function main() {
@@ -131,11 +132,47 @@ function main() {
     //a quick screen render
     init();
 
+    //game starts if user presses enter
+    document.addEventListener("keyup", event => {
+      event.preventDefault();
+      if(event.keyCode === 13 || event.keyCode === 36){
+        document.getElementById("startBtn").click();
+      }
+    })
+
     document.getElementById("startBtn").onclick = function() {
       //hide instructions screen
       const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
+      //hide start button
+      const startPrompt = document.querySelector("#loaded");
+      startPrompt.style.display = "none";      
+      //hide falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.display = "none";
+      //show help button
+      help.style.display = "block";   
     };
+  };
+
+  //help button toggles instructions
+  document.getElementById("help").addEventListener('click', (event)=>{
+    const instructions = document.querySelector("#loading");
+    if(instructions.style.display === "none"){
+      //show instructions screen
+      instructions.style.opacity = 0.8;
+      instructions.style.display = "flex";
+      //show falling duckies and stars
+      const animatedBanner = document.querySelector(".banner");
+      animatedBanner.style.opacity = 0.8;
+      animatedBanner.style.display = "flex";
+    } else {
+      document.getElementById("startBtn").click();
+    }
+  })
+
+  document.getElementById("restartBtn").onclick = function() {
+    window.location.reload();
   };
 
   {
@@ -180,7 +217,7 @@ function main() {
     environment: [],
     fireballs: [],
     trees: [],
-    congaLine: []
+    ducks: []
   };
   gameObjectManager = new GameObjectManager();
   inputManager = new InputManager();
@@ -201,6 +238,7 @@ function main() {
       gameObject.transform.position.x = 70;
       gameObject.transform.position.z = 120;
       globals.obstacles.push(globals.venus);
+
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "venus");
@@ -323,20 +361,21 @@ function main() {
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
-      globals.congaLine.push(globals.player.gameObject);
     }
     {
       const ducks = ["duck", "duck", "duck"];
       ducks.forEach((name, ndx) => {
         globals.duckCount++;
-        const gameObject = gameObjectManager.createGameObject(scene, name, ndx+1);
-        gameObject.addComponent(Duck);
+        const gameObject = gameObjectManager.createGameObject(
+          scene,
+          name,
+          ndx + 1
+        );
+        globals.ducks.push(gameObject.addComponent(Duck));
         gameObject.transform.position.x = -130 - ndx * 7;
-        gameObject.transform.position.y = 0;
-        globals.congaLine.push(gameObject);
+        gameObject.transform.position.y = 5;
       });
       globals.originalCount = globals.duckCount;
-      console.log(globals.congaLine)
     }
     {
       const gameObject = gameObjectManager.createGameObject(scene, "mama");
