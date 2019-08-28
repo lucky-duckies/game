@@ -131,17 +131,17 @@ function main() {
     //a quick screen render
     init();
 
-    // const instructions = document.querySelector("#loading");
-    // if(inputManager.keys.enter.down){
-    //         //hide instructions screen
-    //         instructions.style.display = "none";
-    //         //hide falling duckies and stars
-    //         const animatedBanner = document.querySelector(".banner");
-    //         animatedBanner.style.display = "none";
-    // }
+    //game starts if user presses enter
+    document.addEventListener("keyup", event => {
+      event.preventDefault();
+      if(event.keyCode === 13 || event.keyCode === 36){
+        document.getElementById("startBtn").click();
+      }
+    })
 
     document.getElementById("startBtn").onclick = function() {
       //hide instructions screen
+      const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
       //hide falling duckies and stars
       const animatedBanner = document.querySelector(".banner");
