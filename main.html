@@ -10,15 +10,21 @@
     />
     <title>Three.js - Game</title>
     <link rel="icon" href="resources/images/duckylogo.png">
-    <link rel="stylesheet" href="styletest.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="blocker">
       <div id="win">
-        <br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <span style="font-size:36px">YOU WIN</span>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
+        <span style="font-size:36px">Congratulations! Your duckies admire your leadership!</span><br />
+        <img src="resources/images/win.gif" class="border" width="200" height="200"><br />
+        <button id="replayBtn" class="btn">Replay</button>
       </div>
-      <div id="lose">
+      <div id="lose"> 
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <span style="font-size:36px">May your duckies eventually find their way...</span><br />
         <img src="resources/images/loss.gif" class="border" width="200" height="200"><br />

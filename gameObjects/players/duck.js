@@ -172,7 +172,7 @@ class Duck extends Component {
     };
     //updates score in user view
     function duckCount() {
-      document.getElementById("score").innerHTML = duckDisplay();
+      score.innerHTML = duckDisplay();
     }
     duckCount();
     this.fsm.update();

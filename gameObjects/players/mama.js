@@ -27,8 +27,11 @@ class Mama extends Component {
               lose.style.display === "none"
             ) {
               // display win screen
+              help.style.display = "none";
+              score.style.opacity = 0.6;
               blocker.style.display = "block";
               win.style.display = "block";
+              animatedBanner.style.display = "block";
             }
           }
         }
