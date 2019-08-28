@@ -151,7 +151,6 @@ function main() {
       const animatedBanner = document.querySelector(".banner");
       animatedBanner.style.display = "none";
       //show help button
-
       help.style.display = "block";   
     };
   };
