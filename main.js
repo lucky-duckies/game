@@ -11,10 +11,13 @@ var listener = new THREE.AudioListener();
 const blocker = document.getElementById("blocker");
 const win = document.getElementById("win");
 const lose = document.getElementById("lose");
-const help = document.querySelector("#help");
+const help = document.getElementById("help");
+const score = document.getElementById("score");
+const animatedBanner = document.querySelector(".banner");
 
-// blocker.style.display = "none";
-// win.style.display = "none";
+
+blocker.style.display = "none";
+win.style.display = "none";
 lose.style.display = "none";
 
 let floorOn = true;
@@ -148,7 +151,6 @@ function main() {
       const startPrompt = document.querySelector("#loaded");
       startPrompt.style.display = "none";      
       //hide falling duckies and stars
-      const animatedBanner = document.querySelector(".banner");
       animatedBanner.style.display = "none";
       //show help button
       help.style.display = "block";   
