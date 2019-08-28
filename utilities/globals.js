@@ -18,7 +18,6 @@ let globals = {
   environment: [],
   fireballs: [],
   trees: [],
-  congaLine: [],
   ducks: []
 };
 

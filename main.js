@@ -180,7 +180,6 @@ function main() {
     environment: [],
     fireballs: [],
     trees: [],
-    congaLine: [],
     ducks: []
   };
   gameObjectManager = new GameObjectManager();
@@ -323,7 +322,6 @@ function main() {
       globals.player = gameObject.addComponent(Player);
       gameObject.transform.position.x = -130;
       gameObject.transform.position.y = 5;
-      globals.congaLine.push(globals.player.gameObject);
     }
     {
       const ducks = ["duck", "duck", "duck"];
