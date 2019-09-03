@@ -42,7 +42,6 @@ function main() {
     sound.setBuffer(buffer);
     sound.setLoop(true);
     sound.setVolume(0.5);
-    sound.play();
   });
 
   const controls = new THREE.OrbitControls(camera, canvas);
@@ -187,6 +186,8 @@ function main() {
     });
 
     document.getElementById("startBtn").onclick = function() {
+      //start music
+      sound.play();
       //hide instructions screen
       const instructions = document.querySelector("#loading");
       instructions.style.display = "none";
